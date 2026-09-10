@@ -24,6 +24,14 @@ Les icônes de rang (Iron 1 → Radiant) et les bordures de niveau (1, 20, 40…
 4. Entre ton Riot ID (`Nom#Tag`) puis **Tracker ce Riot ID**, ou règle le rang à la main.
 5. Pour les mates : 5 Riot ID dans **Squad** → **Charger la squad**.
 
+## Aperçu
+
+![Tableau de bord Galaxy Bunny](docs/screenshots/control-galaxy.png)
+
+![Overlay ranked Galaxy Bunny](docs/screenshots/ranked-galaxy.png)
+
+![Carte de niveau Galaxy Bunny](docs/screenshots/level-galaxy.png)
+
 ## Lecture navigateur · toutes les 8 minutes
 
 Dans le panneau, saisis un Riot ID public puis clique sur **Connecter mon profil**. Le lecteur ouvre Edge ou Chrome sans fenêtre, lit Tracker puis ferme le navigateur. La prochaine lecture est programmée 8 minutes après la fin de la précédente. Le lanceur doit rester actif ; le panneau peut être fermé. **Mettre en pause** arrête les prochaines lectures.
