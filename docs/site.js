@@ -89,4 +89,8 @@ const SITE = {
 };
 
 window.SITE = SITE;
-document.addEventListener("DOMContentLoaded", () => SITE.boot());
+function bootWhenReady() {
+  if (window.I18N && window.I18N.fr) SITE.boot();
+  else document.addEventListener("gb-i18n-ready", () => SITE.boot(), { once: true });
+}
+document.addEventListener("DOMContentLoaded", bootWhenReady);

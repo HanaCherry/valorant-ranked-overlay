@@ -1,6 +1,39 @@
 /* global window, module */
 "use strict";
-/** Valorant site i18n bootstrap — language packs in docs/i18n/langs/*.js */
-window.I18N_LANGS=[{"id":"fr","name":"Français"},{"id":"en","name":"English"},{"id":"es","name":"Español"},{"id":"pt","name":"Português"},{"id":"de","name":"Deutsch"},{"id":"it","name":"Italiano"},{"id":"ja","name":"日本語"},{"id":"ko","name":"한국어"},{"id":"zh","name":"简体中文"},{"id":"zh-TW","name":"繁體中文"},{"id":"ar","name":"العربية","dir":"rtl"},{"id":"ru","name":"Русский"},{"id":"hi","name":"हिन्दी"},{"id":"tr","name":"Türkçe"},{"id":"pl","name":"Polski"},{"id":"nl","name":"Nederlands"},{"id":"id","name":"Bahasa Indonesia"},{"id":"vi","name":"Tiếng Việt"},{"id":"th","name":"ไทย"},{"id":"uk","name":"Українська"},{"id":"sv","name":"Svenska"},{"id":"cs","name":"Čeština"},{"id":"ro","name":"Română"},{"id":"el","name":"Ελληνικά"},{"id":"hu","name":"Magyar"},{"id":"fi","name":"Suomi"},{"id":"da","name":"Dansk"},{"id":"no","name":"Norsk"},{"id":"he","name":"עברית","dir":"rtl"},{"id":"ca","name":"Català"},{"id":"ms","name":"Bahasa Melayu"},{"id":"tl","name":"Filipino"}];
-window.I18N=window.I18N||{};
-if(typeof module!=="undefined"&&module.exports){module.exports={I18N:window.I18N,LANGS:window.I18N_LANGS};}
+(function () {
+  var parts = 3;
+  var chunks = [];
+  var left = parts;
+  function fail() {
+    console.error("i18n payload load failed");
+    window.I18N_LANGS = [];
+    window.I18N = {};
+    document.dispatchEvent(new Event("gb-i18n-ready"));
+  }
+  function tryDecode() {
+    if (typeof DecompressionStream === "undefined") return fail();
+    var B64 = chunks.join("");
+    var bin = atob(B64);
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
+    new Response(stream).arrayBuffer().then(function (buf) {
+      var data = JSON.parse(new TextDecoder().decode(new Uint8Array(buf)));
+      window.I18N_LANGS = data.LANGS;
+      window.I18N = data.I18N;
+      if (typeof module !== "undefined" && module.exports) {
+        module.exports = { I18N: window.I18N, LANGS: window.I18N_LANGS };
+      }
+      document.dispatchEvent(new Event("gb-i18n-ready"));
+    }).catch(fail);
+  }
+  for (var i = 0; i < parts; i++) {
+    (function (idx) {
+      fetch("docs/i18n/payload." + idx + ".b64").then(function (r) { return r.text(); }).then(function (t) {
+        chunks[idx] = t.trim();
+        left--;
+        if (left === 0) tryDecode();
+      }).catch(fail);
+    })(i);
+  }
+})();
