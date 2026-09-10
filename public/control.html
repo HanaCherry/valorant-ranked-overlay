@@ -63,7 +63,7 @@
     <section id="overlayLinkTab" class="card span-2 overlay-link-panel">
       <h2>Lien overlay Tracker.gg</h2>
       <p class="hint">Colle ici le lien donné par Tracker.gg. Le lien <b>editor</b> et le lien <b>overlay</b> sont acceptés. Il sera conservé uniquement sur ce serveur local.</p>
-      <div class="row"><label>URL Tracker.gg <input id="trackerOverlayUrlTab" placeholder="https://tracker.gg/overlays/editor/..." /></label><button id="btnApplyOverlay">Utiliser ce lien</button></div>
+      <div class="row"><label>URL Tracker.gg <input id="trackerOverlayUrlTab" placeholder="https://tracker.gg/overlays/editor/..." /></label><button id="btnApplyOverlay">Charger les données</button></div>
       <div id="overlayLinkStatus" class="status"></div>
     </section>
     <div id="controlTab" class="grid">
@@ -177,7 +177,17 @@
     const API = location.origin;
     const $ = (id) => document.getElementById(id);
     document.querySelectorAll("[data-tab]").forEach((btn) => btn.onclick = () => { document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b === btn)); $("overlayLinkTab").classList.toggle("active", btn.dataset.tab === "overlayLinkTab"); $("controlTab").classList.toggle("tab-hidden", btn.dataset.tab !== "controlTab"); });
-    $("btnApplyOverlay").onclick = () => { $("trackerOverlayUrl").value = $("trackerOverlayUrlTab").value.trim(); $("trackerMode").value = "trackerOverlay"; $("overlayLinkStatus").textContent = "Lien enregistré. Clique sur Connecter mon profil dans l’onglet Contrôle."; $("overlayLinkStatus").className = "status ok"; };
+    $("btnApplyOverlay").onclick = async () => {
+      const overlayUrl = $("trackerOverlayUrlTab").value.trim();
+      if (!overlayUrl) { $("overlayLinkStatus").textContent = "Colle d’abord ton lien Tracker.gg."; $("overlayLinkStatus").className = "status err"; return; }
+      $("btnApplyOverlay").disabled = true; $("overlayLinkStatus").textContent = "Lecture de l’overlay en cours…"; $("overlayLinkStatus").className = "status";
+      try {
+        const r = await fetch(API + "/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ mode: "trackerOverlay", overlayUrl, region: $("region").value }) });
+        const j = await r.json(); if (!r.ok) throw new Error(j.error || "Lecture impossible");
+        $("trackerOverlayUrl").value = overlayUrl; $("trackerMode").value = "trackerOverlay"; $("overlayLinkStatus").textContent = "Données chargées · prochaine lecture automatique dans 8 minutes."; $("overlayLinkStatus").className = "status ok"; await load();
+      } catch (e) { $("overlayLinkStatus").textContent = e.message; $("overlayLinkStatus").className = "status err"; }
+      finally { $("btnApplyOverlay").disabled = false; }
+    };
     for (let i = 0; i < 5; i++) {
       const lab = document.createElement("label");
       lab.innerHTML = `Mate ${i + 1}${i === 0 ? " (toi)" : ""} <input id="mate${i}" placeholder="Nom#Tag" />`;
