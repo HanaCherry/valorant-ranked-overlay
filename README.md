@@ -1,71 +1,140 @@
-# Valorant Ranked Overlay
+<p align="center">
+  <img src="public/brand/studio-logo.png" alt="GalaxyBunny Studio" width="120">
+</p>
 
-> Overlay Valorant local pour OBS et Streamlabs, conçu par **GalaxyBunny Studio**.
+<h1 align="center">Valorant Ranked Overlay</h1>
+<p align="center"><strong>GalaxyBunny Studio</strong> · valorant-ranked-overlay</p>
 
-Même famille que les overlays Fortnite et Apex : tableau de bord local + **4 sources navigateur** transparentes.
+<p align="center">
+  Overlay local pour <strong>OBS</strong> et <strong>Streamlabs</strong> — rang, RR, agent, squad et niveau.<br>
+  Même famille que les overlays Fortnite et Apex : tableau de bord local + sources navigateur transparentes.
+</p>
 
-## Les 4 overlays
+<p align="center">
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/"><img src="https://img.shields.io/badge/site-multilingue-8670ef?style=for-the-badge" alt="Site"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-c9bcff?style=for-the-badge" alt="MIT"></a>
+  <a href="package.json"><img src="https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge" alt="Node.js 18+"></a>
+</p>
 
-| Source | URL | Taille conseillée |
-| --- | --- | --- |
-| Overlay classé (rang, RR, kills live) | `http://127.0.0.1:8769/overlay.html` | 700 × 220 |
-| Compact (badge + rang) | `http://127.0.0.1:8769/overlay-compact.html` | 420 × 140 |
-| Agent sélectionné | `http://127.0.0.1:8769/overlay-agent.html` | 760 × 210 |
-| Squad (rangs & stats des 5 mates) | `http://127.0.0.1:8769/overlay-squad.html` | 440 × 260 |
-| Badge de niveau (bordure officielle) | `http://127.0.0.1:8769/overlay-level.html` | 250 × 260 |
+<p align="center">
+  <a href="README.md">Français</a> ·
+  <a href="README.en.md">English</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=es">Español</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=pt">Português</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=de">Deutsch</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=it">Italiano</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ja">日本語</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ko">한국어</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=zh">简体中文</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=zh-TW">繁體中文</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ar">العربية</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ru">Русский</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=hi">हिन्दी</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=tr">Türkçe</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=pl">Polski</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=nl">Nederlands</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=id">Bahasa Indonesia</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=vi">Tiếng Việt</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=th">ไทย</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=uk">Українська</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=sv">Svenska</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=cs">Čeština</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ro">Română</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=el">Ελληνικά</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=hu">Magyar</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=fi">Suomi</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=da">Dansk</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=no">Norsk</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=he">עברית</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ca">Català</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=ms">Bahasa Melayu</a> ·
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/?lang=tl">Filipino</a>
+</p>
 
-Les icônes de rang (Iron 1 → Radiant) et les bordures de niveau (1, 20, 40… 480) sont les assets officiels Valorant, stockés dans `public/ranks` et `public/levels`. Pour les rafraîchir : `node scripts/download-badges.js`.
+<p align="center">
+  <a href="https://hanacherry.github.io/valorant-ranked-overlay/">Site de présentation</a>
+</p>
 
-## Démarrer
+<p align="center">
+  <img src="docs/screenshots/control-galaxy.png" alt="GalaxyBunny Studio — tableau de bord Valorant" width="900">
+</p>
 
-1. Installez [Node.js 18+](https://nodejs.org/).
-2. Double-cliquez sur `LANCER.bat`.
-3. Ouvrez `http://127.0.0.1:8769/control.html`.
-4. Entre ton Riot ID (`Nom#Tag`) puis **Tracker ce Riot ID**, ou règle le rang à la main.
-5. Pour les mates : 5 Riot ID dans **Squad** → **Charger la squad**.
+## Un studio ranked pour Valorant
+
+Ce dépôt propose un **studio d’overlay** pour streamers Valorant : tableau de bord local, cinq overlays OBS transparents, styles galactiques, suivi optionnel d’un Riot ID public et API Henrik facultative pour la squad.
 
 ## Aperçu
 
-![Tableau de bord Galaxy Bunny](docs/screenshots/control-galaxy.png)
+<p align="center">
+  <img src="docs/screenshots/control-galaxy.png" alt="Tableau de bord GalaxyBunny Studio" width="900">
+</p>
 
-![Overlay ranked Galaxy Bunny](docs/screenshots/ranked-galaxy.png)
+<p align="center">
+  <img src="docs/screenshots/ranked-galaxy.png" alt="Overlay ranked Galaxy" width="420">
+  &nbsp;
+  <img src="docs/screenshots/level-galaxy-styled.png" alt="Badge de niveau Galaxy" width="220">
+</p>
 
+## Fonctions
 
+- **Rang & RR** — Iron 1 → Radiant, à la main ou depuis un profil public (Riot ID `Nom#Tag`)
+- **Cinq overlays OBS / Streamlabs** — ranked, compact, agent, squad, niveau — fond transparent
+- **Session live** — kills et compteurs de session depuis le panneau
+- **Agent & squad** — overlay agent sélectionné ; rangs et stats des 5 mates
+- **Effets de rang** — lueurs adaptées au rang (désactivables) ; respect de la réduction d’animations
+- **Privé par conception** — le serveur écoute uniquement `127.0.0.1` ; rien n’est envoyé vers un compte GalaxyBunny
+- **Henrik optionnel** — clé API uniquement dans `data/credentials.json` (ignoré par Git)
 
-## Lecture navigateur · toutes les 8 minutes
+## Démarrage
 
-Dans le panneau, saisis un Riot ID public puis clique sur **Connecter mon profil**. Le lecteur ouvre Edge ou Chrome sans fenêtre, lit Tracker puis ferme le navigateur. La prochaine lecture est programmée 8 minutes après la fin de la précédente. Le lanceur doit rester actif ; le panneau peut être fermé. **Mettre en pause** arrête les prochaines lectures.
+Installez [Node.js 18+](https://nodejs.org), puis :
 
-Aucune clé API pour ce mode. Le navigateur utilise une session isolée et temporaire, sans profil personnel ni cookies importés. Les réglages restent dans `data/`. En cas de profil privé, vérification du site ou format non reconnu, le panneau affiche une erreur et les dernières données restent intactes. Les compteurs de session restent manuels : ce suivi ne lit pas les kills pendant la partie.
+```sh
+git clone https://github.com/HanaCherry/valorant-ranked-overlay.git
+cd valorant-ranked-overlay
+npm install
+npm start
+```
 
-La lecture du profil réel doit être validée avec le Riot ID de l’utilisateur ; les tests automatisés couvrent des exemples de texte et la planification.
+Ouvrez `http://127.0.0.1:8769/control.html`. Le mode manuel fonctionne tout de suite ; ajoutez un Riot ID pour le suivi optionnel.
 
-## Effets de rang
-
-Le panneau Galaxy Bunny et les badges des overlays ranked, compact et squad adaptent leurs lueurs au rang. Désactive-les dans **Effets adaptés au rang**. Le réglage système de réduction des animations est respecté.
-
-## Mode public et API privée facultative
-
-Le mode manuel est le mode recommandé pour une publication publique : il ne demande aucune clé et permet de régler le rang, le RR et les compteurs de session depuis le panneau. Les lecteurs publics (ValoCheck, Tracker.gg, Valking et Blitz) sont proposés comme essais, mais peuvent être bloqués par Cloudflare, un profil privé ou une limite de service.
-
-Le mode **API privée HenrikDev** est facultatif. Sa clé se stocke uniquement dans `data/credentials.json`, ignoré par Git, et n’est jamais envoyée à OBS ni intégrée aux pages d’overlay. Ne publie jamais ce fichier.
-
-## API Henrik (squad)
-
-Les stats publiques passent par [Henrik Dev API](https://docs.henrikdev.xyz/). Une clé API requise pour ce mode se stocke uniquement dans `data/credentials.json` (ignoré par Git). Sans clé, le mode manuel (rang, RR, session kills) fonctionne quand même.
+Sous Windows, `LANCER.bat` démarre aussi le serveur. `LANCER-SILENCIEUX.vbs` le lance sans console, après installation des dépendances.
 
 ## OBS / Streamlabs
 
-Ajoute une source **Navigateur** par overlay, fond transparent. Garde `LANCER.bat` ouvert pendant le stream.
+1. Démarrez l’application et laissez-la ouverte pendant le stream.
+2. Copiez l’URL de l’overlay depuis le panneau.
+3. Ajoutez une source **Navigateur**.
+4. Collez l’URL. Le fond est transparent par défaut.
 
-## Données
+| Source | URL | Taille conseillée |
+| --- | --- | --- |
+| Overlay classé | `http://127.0.0.1:8769/overlay.html` | 700 × 220 |
+| Compact | `http://127.0.0.1:8769/overlay-compact.html` | 420 × 140 |
+| Agent | `http://127.0.0.1:8769/overlay-agent.html` | 760 × 210 |
+| Squad | `http://127.0.0.1:8769/overlay-squad.html` | 440 × 260 |
+| Niveau | `http://127.0.0.1:8769/overlay-level.html` | 250 × 260 |
 
-Réglages et état restent dans `data/`. Le dépôt n’embarque aucun Riot ID ni clé.
+## Suivi de profil
 
-## Mentions
+Saisissez un Riot ID public puis **Connecter mon profil** / **Tracker ce Riot ID**. Le lecteur ouvre Edge ou Chrome sans fenêtre, lit le tracker, puis ferme le navigateur. Intervalle typique : environ 8 minutes. Aucune clé API pour ce mode. Les lecteurs publics peuvent être bloqués (Cloudflare, profil privé, limites).
 
-VALORANT est une marque de Riot Games. Projet indépendant, non affilié.
+Le mode **API privée HenrikDev** est facultatif pour la squad. La clé reste dans `data/credentials.json`, jamais envoyée à OBS. Sans clé, le mode manuel (rang, RR, session) fonctionne.
 
-## Licence
+## Données locales
 
-MIT.
+Les réglages saisis restent locaux :
+
+- `data/` — configuration, état de session, credentials optionnels
+
+Le dossier `data/` est créé automatiquement et **entièrement ignoré par Git**. N’ajoutez pas `data/` avec `git add -f`.
+
+```sh
+npm test
+```
+
+## Mentions / Licence
+
+Logo : GalaxyBunny Studio. VALORANT et ses assets de rang appartiennent à Riot Games et à leurs détenteurs respectifs. Ce projet est indépendant et n’est **pas** un produit officiel de Riot Games.
+
+Licence **MIT**.

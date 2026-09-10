@@ -5,6 +5,14 @@
   "main": "server.js",
   "private": true,
   "license": "MIT",
+  "homepage": "https://hanacherry.github.io/valorant-ranked-overlay/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HanaCherry/valorant-ranked-overlay.git"
+  },
+  "bugs": {
+    "url": "https://github.com/HanaCherry/valorant-ranked-overlay/issues"
+  },
   "scripts": {
     "start": "node server.js",
     "test": "node --test test/*.test.js",
