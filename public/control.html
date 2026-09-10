@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valorant Ranked — GalaxyBunny Studio</title>
+  <style>
+    :root {
+      --bg: #0c0e14; --card: rgba(255,255,255,0.05); --line: rgba(255,70,85,0.28);
+      --pink: #ff4655; --text: #fff7fb; --muted: rgba(255,247,251,0.65);
+      --ok: #7dffa3; --bad: #ff7a9a; --font: "Segoe UI", system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; font-family: var(--font); color: var(--text);
+      background: radial-gradient(800px 400px at 10% -10%, rgba(255,70,85,0.22), transparent),
+        radial-gradient(600px 360px at 100% 0%, rgba(80,100,255,0.12), transparent), var(--bg);
+    }
+    .app { max-width: 1080px; margin: 0 auto; padding: 24px 16px 70px; }
+    h1 { font-size: 1.4rem; margin: 0 0 4px; }
+    .sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 18px; }
+    .grid { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+    .card h2 { font-size: 0.82rem; margin: 0 0 12px; color: var(--pink); letter-spacing: 0.06em; text-transform: uppercase; }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; align-items: end; }
+    .option-row { align-items: center; } .option-row label { flex-direction: row; align-items: center; min-width: 150px; gap: 8px; } .option-row input { min-height: auto; width: 18px; height: 18px; accent-color: #c58bff; }
+    .level-preview { height: 270px; margin-top: 16px; overflow: hidden; border: 1px solid #c19aff44; border-radius: 16px; background: repeating-conic-gradient(#ffffff08 0 25%,transparent 0 50%) 0/24px 24px,#090714; }
+    .level-preview iframe { width: 100%; height: 100%; border: 0; }
+    .server-info { display:flex; justify-content:space-around; gap:18px; text-align:center; } .server-info div { display:flex; flex-direction:column; gap:5px; } .server-info b { color:#a8f7d5; } .server-info span { color:var(--muted); font-size:13px; }
+    .halo-controls { align-items: end; margin-top: 14px; } .halo-controls input,.halo-controls select { min-height: 40px; }
+    label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); flex: 1; min-width: 110px; }
+    input, select {
+      background: rgba(0,0,0,0.35); border: 1px solid var(--line); border-radius: 10px;
+      color: var(--text); padding: 9px 10px; font-size: 14px;
+    }
+    button {
+      border: 0; border-radius: 10px; padding: 10px 14px; font-weight: 700; cursor: pointer;
+      background: linear-gradient(135deg, #ff4655, #7a6bff); color: #fff;
+    }
+    button.secondary { background: rgba(255,255,255,0.1); }
+    .hint { font-size: 12px; color: var(--muted); line-height: 1.45; margin-bottom: 10px; }
+    code { display: block; background: rgba(0,0,0,0.35); padding: 8px 10px; border-radius: 8px; font-size: 12px; margin: 6px 0; word-break: break-all; }
+    .status { font-size: 13px; color: var(--muted); margin-top: 8px; }
+    .status.ok { color: var(--ok); } .status.err { color: var(--bad); }
+    .quick { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+    .span-2 { grid-column: 1 / -1; }
+    .preview { border-radius: 14px; padding: 14px; background: rgba(255,70,85,0.08); border: 1px solid var(--line); }
+    .preview-badge { position: relative; width: 150px; height: 150px; margin: 0 auto 4px; }
+    .preview-badge canvas { position:absolute; inset:0; width:100%; height:100%; }
+    .preview-badge img { position:absolute; z-index:2; inset:31px; width:88px; height:88px; object-fit:contain; filter:drop-shadow(0 0 8px var(--fx,#c797ff)); }
+    .rank-big { font-size: 1.7rem; font-weight: 800; }
+  </style>
+  <link rel="stylesheet" href="galaxy.css" />
+<link rel="stylesheet" href="rank-effects.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="brand"><img src="brand/studio-logo.png" alt="Galaxy Bunny Studio" /><div><p class="eyebrow">GALAXY BUNNY · STREAM STUDIO</p><h1>Valorant <span>Ranked</span></h1></div><span class="local-pill">● Studio local</span></header>
+    <p class="sub">Ton espace de contrôle. Ton rang, ta squad, ton univers.</p>
+    <div class="grid">
+      <section class="card">
+        <h2>Profil live</h2>
+        <p class="hint">Lecture du profil public sur Tracker, en arrière-plan toutes les 8 minutes. Aucune clé requise pour ce mode.</p>
+        <div class="row">
+          <label>Riot ID <input id="riotId" placeholder="Joueur#TAG" /></label>
+          <label>Région
+            <select id="region">
+              <option value="eu">EU</option>
+              <option value="na">NA</option>
+              <option value="ap">AP</option>
+              <option value="kr">KR</option>
+              <option value="latam">LATAM</option>
+              <option value="br">BR</option>
+            </select>
+          </label>
+        </div>
+        <div class="row">
+          <label>Source des statistiques
+            <select id="trackerMode"><option value="manual">Mode manuel · recommandé</option><option value="henrik">API privée HenrikDev</option><option value="valocheck">ValoCheck public</option><option value="tracker">Tracker.gg public</option><option value="valking">Valking public</option><option value="blitz">Blitz public</option></select>
+          </label>
+          <label>Clé API privée (facultative) <input id="apiKey" type="password" placeholder="stockée seulement sur ce serveur" /></label>
+          <p class="hint">Le mode manuel fonctionne sans compte ni clé. La clé privée n’est jamais envoyée à OBS.</p>
+        </div>
+        <div class="row"><button id="btnTrack">✦ Connecter mon profil</button><button id="btnPause" class="secondary">Mettre en pause</button></div><p id="syncStatus" class="hint" role="status">Suivi désactivé</p>
+        <div class="status" id="trackStatus"></div>
+      </section>
+      <section class="card">
+        <h2>Aperçu du rang</h2><label class="fx-control"><input type="checkbox" id="rankEffects" checked /> Effets adaptés au rang</label>
+        <div class="preview"><div class="preview-badge"><canvas id="previewStars" width="180" height="180"></canvas><img id="pvBadge" src="ranks/unranked.png" alt="Badge de rang" /></div><span class="eyebrow">COMPETITIVE</span>
+          <div class="rank-big" id="pvRank">Gold 2</div>
+          <div id="pvSub">45 RR · Competitive</div>
+          <div class="status" id="pvName">—</div><div class="rr-track"><div id="rrFill"></div></div><div class="stat-strip"><span>K/D <b id="liveKd">—</b></span><span>HS <b id="liveHs">—</b></span><span>Victoires <b id="liveWin">—</b></span></div>
+        </div>
+      </section>
+      <section class="card span-2">
+        <h2>Rang manuel & session</h2>
+        <div class="row">
+          <label>Rang <select id="rank"></select></label>
+          <label>RR (0–100) <input id="rr" type="number" min="0" max="100" /></label>
+          <label>Pseudo overlay <input id="name" /></label>
+          <label>Niveau compte <input id="level" type="number" min="1" max="999" /></label>
+          <label>Agent <select id="agent"></select></label>
+        </div>
+        <div class="row">
+          <label>K/D <input id="kd" type="number" step="0.01" /></label>
+          <label>HS% <input id="hs" type="number" /></label>
+          <label>Win% <input id="winRate" type="number" /></label>
+          <label>ACS <input id="acs" type="number" /></label>
+        </div>
+        <button id="btnSave">Enregistrer</button>
+        <div class="quick" style="margin-top:12px">
+          <button class="secondary" data-delta="kill">+ Kill</button>
+          <button class="secondary" data-delta="death">+ Mort</button>
+          <button class="secondary" data-delta="assist">+ Assist</button>
+          <button class="secondary" data-delta="reset">Reset session</button>
+        </div>
+      </section>
+      <section class="card span-2">
+        <h2>Éléments de l’overlay</h2>
+        <div class="row option-row">
+          <label><input type="checkbox" data-overlay="showLogo" checked /> Badge de rang</label>
+          <label><input type="checkbox" data-overlay="showRankName" checked /> Nom du rang</label>
+          <label><input type="checkbox" data-overlay="showProgress" checked /> Barre RR</label>
+          <label><input type="checkbox" data-overlay="showStats" /> Statistiques</label>
+          <label><input type="checkbox" data-overlay="showLiveKills" checked /> Kills live</label>
+          <label><input type="checkbox" data-overlay="showLiveDeaths" checked /> Morts live</label>
+          <label><input type="checkbox" data-overlay="showToasts" checked /> Notifications</label>
+        </div>
+        <p class="hint">Ces réglages s’appliquent à toutes les sources OBS.</p>
+      </section>
+      <section class="card span-2">
+        <h2>Overlay niveau</h2>
+        <div class="row option-row">
+          <label><input type="checkbox" data-overlay="levelShowBorder" checked /> Bordure de niveau</label>
+          <label><input type="checkbox" data-overlay="levelShowOuter" checked /> Halo violet externe</label>
+          <label><input type="checkbox" data-overlay="levelShowCircle" checked /> Cercle lumineux</label>
+          <label><input type="checkbox" data-overlay="levelShowBackground" checked /> Fond sombre</label>
+          <label><input type="checkbox" data-overlay="levelShowNumber" checked /> Numéro</label>
+          <label><input type="checkbox" data-overlay="levelShowStars" checked /> Étoiles</label>
+          <label><input type="checkbox" data-overlay="levelShowName" checked /> Pseudo</label>
+        </div>
+        <div class="row halo-controls"><label>Couleur <input id="levelHaloColor" type="color" value="#b178ff" /></label><label>RGB / HEX <input id="levelHaloText" value="#b178ff" /></label><label>Animation <select id="levelEffect"><option value="pulse">Pulsation</option><option value="spin">Rotation</option><option value="sparkle">Scintillement</option><option value="static">Fixe</option></select></label></div>
+        <div class="level-preview"><iframe src="overlay-level.html?preview=1" title="Aperçu overlay niveau"></iframe></div>
+      </section>
+      <section class="card span-2">
+        <h2>Squad — 5 mates</h2>
+        <p class="hint">Entre jusqu’à 5 Riot ID (le premier = toi). La squad utilise la clé Henrik. Le suivi navigateur automatique concerne ton profil principal.</p>
+        <div class="row" id="squadInputs"></div>
+        <button id="btnSquad">Charger la squad</button>
+        <div class="status" id="squadStatus"></div>
+      </section>
+      <section class="card span-2">
+        <h2>Serveur local</h2>
+        <div class="preview server-info"><div><b id="serverStatus">● En ligne</b><span id="serverAddress">localhost:8769</span></div><div><b id="serverUptime">—</b><span>Temps actif</span></div><div><b>Privé</b><span>Accessible uniquement sur ce PC</span></div></div>
+      </section>
+      <section class="card span-2">
+        <h2>Sources OBS / Streamlabs</h2>
+        <p class="hint">Source Navigateur, fond transparent. Laisse LANCER.bat ouvert.</p>
+        <code>http://localhost:8769/overlay.html</code>
+        <code>http://localhost:8769/overlay-compact.html</code>
+        <code>http://localhost:8769/overlay-agent.html</code>
+        <code>http://localhost:8769/overlay-squad.html</code>
+        <code>http://localhost:8769/overlay-level.html</code>
+      </section>
+    </div>
+  </div>
+  <script src="stars.js"></script>
+  <script>
+    const API = location.origin;
+    const $ = (id) => document.getElementById(id);
+    for (let i = 0; i < 5; i++) {
+      const lab = document.createElement("label");
+      lab.innerHTML = `Mate ${i + 1}${i === 0 ? " (toi)" : ""} <input id="mate${i}" placeholder="Nom#Tag" />`;
+      $("squadInputs").appendChild(lab);
+    }
+    async function load() {
+      const s = await (await fetch(API + "/api/state")).json();
+      const server = await (await fetch(API + "/api/server")).json();
+      $("serverAddress").textContent = `${server.host}:${server.port}`; $("serverUptime").textContent = Math.floor(server.uptimeSeconds / 60) + " min";
+      const ranks = s.ranks || [];
+      $("rank").innerHTML = ranks.map((r) => `<option>${r}</option>`).join("");
+      $("rank").value = s.parsed?.rank || s.rank;
+      $("rr").value = s.rr ?? 0;
+      $("name").value = s.name || "";
+      $("kd").value = s.kd ?? 0;
+      $("hs").value = s.hs ?? 0;
+      $("winRate").value = s.winRate ?? 0;
+      $("acs").value = s.acs ?? 0;
+      if ($("level")) $("level").value = s.level ?? 1;
+      $("pvRank").textContent = s.parsed?.rank || s.rank;
+      $("pvSub").textContent = `${s.rr || 0} RR · Competitive`;
+      $("pvName").textContent = s.riotId || s.name || "manuel";
+      if (s.riotName && s.riotTag) $("riotId").value = `${s.riotName}#${s.riotTag}`;
+      $("region").value = s.region || "eu";
+      const cfg = await (await fetch(API + "/api/config")).json();
+      $("trackerMode").value = cfg.trackerMode === "browser" ? (cfg.trackerProvider || "valocheck") : (cfg.trackerMode || "manual");
+      document.querySelectorAll("[data-overlay]").forEach((el) => { el.checked = cfg.overlay?.[el.dataset.overlay] !== false; });
+      $("levelHaloColor").value = /^#[0-9a-f]{6}$/i.test(cfg.overlay?.levelHaloColor || "") ? cfg.overlay.levelHaloColor : "#b178ff"; $("levelHaloText").value = cfg.overlay?.levelHaloColor || "#b178ff"; $("levelEffect").value = cfg.overlay?.levelEffect || "pulse";
+      (s.squad || []).forEach((p, i) => { if ($(`mate${i}`)) $(`mate${i}`).value = p.riotId || ""; });
+      const ag = await (await fetch(API + "/api/agents")).json();
+      $("agent").innerHTML = (ag.agents || []).map((a) => `<option>${a.name}</option>`).join("");
+      if (s.agent) $("agent").value = s.agent;
+    }
+    document.querySelectorAll("[data-overlay]").forEach((el) => el.onchange = async () => {
+      const overlay = {}; document.querySelectorAll("[data-overlay]").forEach((x) => { overlay[x.dataset.overlay] = x.checked; });
+      await fetch(API + "/api/config", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ overlay }) });
+    });
+    async function saveLevelStyle(){ await fetch(API+"/api/config",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({overlay:{levelHaloColor:$("levelHaloText").value.trim(),levelEffect:$("levelEffect").value}})}); }
+    $("levelHaloColor").oninput=()=>{$("levelHaloText").value=$("levelHaloColor").value;saveLevelStyle()}; $("levelHaloText").onchange=saveLevelStyle; $("levelEffect").onchange=saveLevelStyle;
+    $("btnSave").onclick = async () => {
+      await fetch(API + "/api/state", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          rank: $("rank").value, rr: Number($("rr").value), name: $("name").value,
+          kd: Number($("kd").value), hs: Number($("hs").value), winRate: Number($("winRate").value),
+          acs: Number($("acs").value), agent: $("agent").value, level: Number($("level").value),
+        }),
+      });
+      load();
+    };
+    $("btnTrack").onclick = async () => {
+      $("btnTrack").disabled = true;
+      $("trackStatus").textContent = "Lecture du profil en arrière-plan…";
+      try {
+        const mode = $("trackerMode").value;
+        const r = await fetch(API + "/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ riotId: $("riotId").value, region: $("region").value, mode }) });
+        const j = await r.json(); if (!r.ok) throw new Error(j.error);
+        $("trackStatus").textContent = "Profil connecté · mise à jour toutes les 8 minutes";
+        $("trackStatus").className = "status ok"; await load();
+      } catch(e) { $("trackStatus").textContent = e.message; $("trackStatus").className = "status err"; }
+      finally { $("btnTrack").disabled = false; }
+    };
+    $("rankEffects").onchange = async () => {
+      try {
+        const r=await fetch(API+"/api/config",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({overlay:{rankEffects:$("rankEffects").checked}})});
+        if(!r.ok) throw new Error("Réglage non enregistré"); await refreshPreview();
+      } catch(e) { $("trackStatus").textContent=e.message; }
+    };
+    $("btnPause").onclick = async () => {
+      try {
+        const r = await fetch(API + "/api/config", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ trackerMode: "manual" }) });
+        if (!r.ok) throw new Error("Impossible de mettre en pause");
+        $("trackStatus").textContent = "Suivi en pause"; await refreshPreview();
+      } catch(e) { $("trackStatus").textContent = e.message; }
+    };
+    let previewStars = null;
+    async function refreshPreview() {
+      const s = await (await fetch(API + "/api/state")).json();
+      $("pvRank").textContent = s.rank; $("pvSub").textContent = (s.rr ?? "—") + " RR · Competitive";
+      $("pvName").textContent = s.riotId || "Aperçu manuel";
+      const badge = String(s.rank || "unranked").toLowerCase().replace(/\s/g, "");
+      $("pvBadge").src = "ranks/" + (/^(iron|bronze|silver|gold|platinum|diamond|ascendant|immortal)[123]$|^(radiant|unranked)$/.test(badge) ? badge : "unranked") + ".png";
+      $("rrFill").style.width = Math.min(100,Math.max(0,s.rr || 0)) + "%";
+      $("liveKd").textContent=s.kd ?? "—"; $("liveHs").textContent=s.hs == null ? "—" : s.hs + "%"; $("liveWin").textContent=s.winRate == null ? "—" : s.winRate + "%";
+      document.body.classList.toggle("effects-off", s.overlay?.rankEffects === false);
+      $("pvBadge").dataset.rankFx = (s.parsed?.division || "Unranked").toLowerCase();
+      if (!previewStars && window.RankStars) previewStars = window.RankStars.create($("previewStars"), s.parsed?.division || "Unranked");
+      else if (previewStars) previewStars.setDivision(s.parsed?.division || "Unranked");
+      $("rankEffects").checked = s.overlay?.rankEffects !== false;
+      const t=s.tracking || {};
+      $("syncStatus").textContent = t.busy ? "Lecture en cours…" : t.mode !== "browser" ? "Suivi en pause · réglages manuels disponibles" : (t.error ? t.error + " · " : "") + (t.lastSuccess ? "Dernière lecture : " + new Date(t.lastSuccess).toLocaleTimeString() + " · " : "Aucune lecture réussie · ") + (t.nextRun ? "Prochaine tentative : " + new Date(t.nextRun).toLocaleTimeString() : "");
+    }
+    setInterval(() => refreshPreview().catch(() => { $("syncStatus").textContent="Connexion au studio interrompue"; }), 2000);
+    refreshPreview().catch(() => {});
+    $("btnSquad").onclick = async () => {
+      $("squadStatus").textContent = "Chargement des 5 joueurs…";
+      if ($("apiKey").value) {
+        await fetch(API + "/api/config", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({apiKey: $("apiKey").value}) });
+        $("apiKey").value = "";
+      }
+      const ids = [0,1,2,3,4].map((i) => $(`mate${i}`).value);
+      const r = await fetch(API + "/api/squad", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ids, region: $("region").value }),
+      });
+      const j = await r.json();
+      $("squadStatus").textContent = j.error || "Squad à jour";
+      $("squadStatus").className = "status " + (j.error ? "err" : "ok");
+      load();
+    };
+    document.querySelectorAll("[data-delta]").forEach((b) => {
+      b.onclick = async () => {
+        await fetch(API + "/api/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ delta: b.dataset.delta }),
+        });
+        load();
+      };
+    });
+    load().catch((e) => { $("trackStatus").textContent = e.message; });
+  </script>
+</body>
+</html>

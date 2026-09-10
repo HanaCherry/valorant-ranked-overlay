@@ -1,0 +1,10 @@
+node_modules/
+data/
+dist/
+installer.js
+installer-package.json
+INSTALLER-RACCOURCI.bat
+GalaxyBunny-*.png
+GalaxyBunny.ico
+*.log
+.DS_Store

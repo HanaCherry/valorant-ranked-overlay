@@ -1,0 +1,288 @@
+{
+  "episode": "Episode5_CompetitiveTierDataTable",
+  "uuid": "03621f52-342b-cf4e-4f86-9350a49c6d04",
+  "ranks": {
+    "Unranked": {
+      "file": "unranked.png",
+      "color": "#ffffff",
+      "tier": 0
+    },
+    "Iron 1": {
+      "file": "iron1.png",
+      "color": "#868986",
+      "tier": 3
+    },
+    "Iron 2": {
+      "file": "iron2.png",
+      "color": "#868986",
+      "tier": 4
+    },
+    "Iron 3": {
+      "file": "iron3.png",
+      "color": "#868986",
+      "tier": 5
+    },
+    "Bronze 1": {
+      "file": "bronze1.png",
+      "color": "#a5855d",
+      "tier": 6
+    },
+    "Bronze 2": {
+      "file": "bronze2.png",
+      "color": "#a5855d",
+      "tier": 7
+    },
+    "Bronze 3": {
+      "file": "bronze3.png",
+      "color": "#a5855d",
+      "tier": 8
+    },
+    "Silver 1": {
+      "file": "silver1.png",
+      "color": "#bbc2c2",
+      "tier": 9
+    },
+    "Silver 2": {
+      "file": "silver2.png",
+      "color": "#bbc2c2",
+      "tier": 10
+    },
+    "Silver 3": {
+      "file": "silver3.png",
+      "color": "#bbc2c2",
+      "tier": 11
+    },
+    "Gold 1": {
+      "file": "gold1.png",
+      "color": "#eccf56",
+      "tier": 12
+    },
+    "Gold 2": {
+      "file": "gold2.png",
+      "color": "#eccf56",
+      "tier": 13
+    },
+    "Gold 3": {
+      "file": "gold3.png",
+      "color": "#eccf56",
+      "tier": 14
+    },
+    "Platinum 1": {
+      "file": "platinum1.png",
+      "color": "#59a9b6",
+      "tier": 15
+    },
+    "Platinum 2": {
+      "file": "platinum2.png",
+      "color": "#59a9b6",
+      "tier": 16
+    },
+    "Platinum 3": {
+      "file": "platinum3.png",
+      "color": "#59a9b6",
+      "tier": 17
+    },
+    "Diamond 1": {
+      "file": "diamond1.png",
+      "color": "#b489c4",
+      "tier": 18
+    },
+    "Diamond 2": {
+      "file": "diamond2.png",
+      "color": "#b489c4",
+      "tier": 19
+    },
+    "Diamond 3": {
+      "file": "diamond3.png",
+      "color": "#b489c4",
+      "tier": 20
+    },
+    "Ascendant 1": {
+      "file": "ascendant1.png",
+      "color": "#6ae2af",
+      "tier": 21
+    },
+    "Ascendant 2": {
+      "file": "ascendant2.png",
+      "color": "#6ae2af",
+      "tier": 22
+    },
+    "Ascendant 3": {
+      "file": "ascendant3.png",
+      "color": "#6ae2af",
+      "tier": 23
+    },
+    "Immortal 1": {
+      "file": "immortal1.png",
+      "color": "#bb3d65",
+      "tier": 24
+    },
+    "Immortal 2": {
+      "file": "immortal2.png",
+      "color": "#bb3d65",
+      "tier": 25
+    },
+    "Immortal 3": {
+      "file": "immortal3.png",
+      "color": "#bb3d65",
+      "tier": 26
+    },
+    "Radiant": {
+      "file": "radiant.png",
+      "color": "#ffffaa",
+      "tier": 27
+    }
+  },
+  "levels": [
+    {
+      "startingLevel": 1,
+      "displayName": "Level 1 Border",
+      "border": "levels/border-1.png",
+      "numberPlate": "levels/number-1.png"
+    },
+    {
+      "startingLevel": 20,
+      "displayName": "Level 20 Border",
+      "border": "levels/border-20.png",
+      "numberPlate": "levels/number-20.png"
+    },
+    {
+      "startingLevel": 40,
+      "displayName": "Level 40 Border",
+      "border": "levels/border-40.png",
+      "numberPlate": "levels/number-40.png"
+    },
+    {
+      "startingLevel": 60,
+      "displayName": "Level 60 Border",
+      "border": "levels/border-60.png",
+      "numberPlate": "levels/number-60.png"
+    },
+    {
+      "startingLevel": 80,
+      "displayName": "Level 80 Border",
+      "border": "levels/border-80.png",
+      "numberPlate": "levels/number-80.png"
+    },
+    {
+      "startingLevel": 100,
+      "displayName": "Level 100 Border",
+      "border": "levels/border-100.png",
+      "numberPlate": "levels/number-100.png"
+    },
+    {
+      "startingLevel": 120,
+      "displayName": "Level 120 Border",
+      "border": "levels/border-120.png",
+      "numberPlate": "levels/number-120.png"
+    },
+    {
+      "startingLevel": 140,
+      "displayName": "Level 140 Border",
+      "border": "levels/border-140.png",
+      "numberPlate": "levels/number-140.png"
+    },
+    {
+      "startingLevel": 160,
+      "displayName": "Level 160 Border",
+      "border": "levels/border-160.png",
+      "numberPlate": "levels/number-160.png"
+    },
+    {
+      "startingLevel": 180,
+      "displayName": "Level 180 Border",
+      "border": "levels/border-180.png",
+      "numberPlate": "levels/number-180.png"
+    },
+    {
+      "startingLevel": 200,
+      "displayName": "Level 200 Border",
+      "border": "levels/border-200.png",
+      "numberPlate": "levels/number-200.png"
+    },
+    {
+      "startingLevel": 220,
+      "displayName": "Level 220 Border",
+      "border": "levels/border-220.png",
+      "numberPlate": "levels/number-220.png"
+    },
+    {
+      "startingLevel": 240,
+      "displayName": "Level 240 Border",
+      "border": "levels/border-240.png",
+      "numberPlate": "levels/number-240.png"
+    },
+    {
+      "startingLevel": 260,
+      "displayName": "Level 260 Border",
+      "border": "levels/border-260.png",
+      "numberPlate": "levels/number-260.png"
+    },
+    {
+      "startingLevel": 280,
+      "displayName": "Level 280 Border",
+      "border": "levels/border-280.png",
+      "numberPlate": "levels/number-280.png"
+    },
+    {
+      "startingLevel": 300,
+      "displayName": "Level 300 Border",
+      "border": "levels/border-300.png",
+      "numberPlate": "levels/number-300.png"
+    },
+    {
+      "startingLevel": 320,
+      "displayName": "Level 320 Border",
+      "border": "levels/border-320.png",
+      "numberPlate": "levels/number-320.png"
+    },
+    {
+      "startingLevel": 340,
+      "displayName": "Level 340 Border",
+      "border": "levels/border-340.png",
+      "numberPlate": "levels/number-340.png"
+    },
+    {
+      "startingLevel": 360,
+      "displayName": "Level 360 Border",
+      "border": "levels/border-360.png",
+      "numberPlate": "levels/number-360.png"
+    },
+    {
+      "startingLevel": 380,
+      "displayName": "Level 380 Border",
+      "border": "levels/border-380.png",
+      "numberPlate": "levels/number-380.png"
+    },
+    {
+      "startingLevel": 400,
+      "displayName": "Level 400 Border",
+      "border": "levels/border-400.png",
+      "numberPlate": "levels/number-400.png"
+    },
+    {
+      "startingLevel": 420,
+      "displayName": "Level 420 Border",
+      "border": "levels/border-420.png",
+      "numberPlate": "levels/number-420.png"
+    },
+    {
+      "startingLevel": 440,
+      "displayName": "Level 440 Border",
+      "border": "levels/border-440.png",
+      "numberPlate": "levels/number-440.png"
+    },
+    {
+      "startingLevel": 460,
+      "displayName": "Level 460 Border",
+      "border": "levels/border-460.png",
+      "numberPlate": "levels/number-460.png"
+    },
+    {
+      "startingLevel": 480,
+      "displayName": "Level 480 Border",
+      "border": "levels/border-480.png",
+      "numberPlate": "levels/number-480.png"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Rajdhani:wght@600;700&display=swap");
+:root { --accent: #ff4655; --shade: #3a1018; }
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden; background: transparent; color: #f7f7fa; font-family: Rajdhani, Arial, sans-serif; }
+.agent-card {
+  width: 760px; height: 210px; position: relative; display: flex; overflow: hidden;
+  background: linear-gradient(105deg, rgba(7,9,13,.98), rgba(16,22,29,.95) 66%, color-mix(in srgb, var(--shade) 85%, #10151d));
+  border-left: 4px solid var(--accent);
+  box-shadow: 0 8px 26px rgba(0,0,0,.45);
+}
+.portrait-wrap {
+  width: 285px; position: relative; overflow: hidden;
+  background: radial-gradient(circle at 43% 25%, var(--accent), var(--shade) 55%, #12161d 92%);
+}
+#portrait { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% center; }
+#portrait[hidden] { display: none; }
+.portrait-fallback { position: absolute; inset: 0; display: grid; place-items: center; font: 800 40px "Barlow Condensed"; color: rgba(255,255,255,.18); }
+section { z-index: 2; flex: 1; padding: 26px 32px 18px 0; }
+.eyebrow { margin: 0; color: color-mix(in srgb, var(--accent) 68%, white); font: 700 12px "Barlow Condensed"; letter-spacing: 3px; }
+h1 { margin: 2px 0 0; font: 800 50px "Barlow Condensed"; letter-spacing: 1.5px; line-height: .9; text-transform: uppercase; }
+.rule { height: 3px; width: 100%; margin: 12px 0 15px; background: linear-gradient(90deg, var(--accent) 0 52%, rgba(235,243,246,.17) 52%); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+.stats div { padding-left: 12px; border-left: 2px solid color-mix(in srgb, var(--accent) 72%, transparent); }
+.stats b { display: block; font: 800 31px "Barlow Condensed"; line-height: .9; }
+.stats span { font: 700 11px "Barlow Condensed"; letter-spacing: 2px; color: #aeb8c0; }

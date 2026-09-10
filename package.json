@@ -1,0 +1,19 @@
+{
+  "name": "valorant-ranked-overlay",
+  "version": "1.0.0",
+  "description": "Overlay Valorant Ranked pour OBS — GalaxyBunny Studio (même studio que Fortnite et Apex)",
+  "main": "server.js",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js",
+    "download-badges": "node scripts/download-badges.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "playwright-core": "1.61.1"
+  }
+}

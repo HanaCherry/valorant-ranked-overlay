@@ -1,0 +1,75 @@
+/* Shared visual language for the gallery images and the actual OBS renderer. */
+.theme-classic{--style-accent:#bbadff;--style-bg:transparent;--style-border:transparent;--style-radius:12px}
+.theme-galaxy{--style-accent:#ec9cff;--style-bg:radial-gradient(ellipse at 10% 100%,#854be877,transparent 65%),radial-gradient(ellipse at 95% 10%,#d14caf66,transparent 65%),#110e2be8;--style-border:#c795ff80;--style-radius:22px}
+.theme-neon{--style-accent:#5ef9ef;--style-bg:linear-gradient(115deg,#051c27ee,#19102aee);--style-border:#5ef9ef;--style-radius:4px}
+.theme-frost{--style-accent:#a9e7ff;--style-bg:linear-gradient(130deg,#b4e9ff38,#244963cc);--style-border:#c2f0ff99;--style-radius:20px}
+.theme-royal{--style-accent:#f6cf75;--style-bg:linear-gradient(125deg,#332c19ed,#0e1019f5);--style-border:#d9b459aa;--style-radius:8px}
+.theme-minimal{--style-accent:#fff;--style-bg:#10131bea;--style-border:#ffffff24;--style-radius:3px}
+body:not(.theme-classic) .banner,body:not(.theme-classic) .panel,.theme-thumbnail .style-surface{background:var(--style-bg);border:1px solid var(--style-border);border-radius:var(--style-radius)}
+body:not(.theme-classic) .banner{padding:10px 20px 10px 6px}
+body:not(.theme-classic) .panel{padding:16px}
+body:not(.theme-classic) .rank-name{color:var(--style-accent)}
+body:not(.theme-classic) .bar>i{background:linear-gradient(90deg,var(--rank),var(--style-accent))}
+body.theme-neon .banner,body.theme-neon .panel{box-shadow:inset 0 0 18px #25fff015,0 0 12px #25fff025;border-left-width:4px}
+body.theme-frost .banner,body.theme-frost .panel{backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 #ffffff55}
+body.theme-royal .rank-name{letter-spacing:2px}body.theme-royal .banner,body.theme-royal .panel{border-top:3px solid var(--style-accent)}
+body.theme-minimal .rank-name{font-size:23px;font-weight:600;letter-spacing:0}body.theme-minimal .banner{gap:0}
+body{--badge-energy:var(--rank,#61cfff)}
+.badge-orbit .logo-wrap,.badge-shield .logo-wrap,.badge-crystal .logo-wrap,.badge-medal .logo-wrap{position:relative;isolation:isolate;padding:9px;filter:drop-shadow(0 7px 12px #0009)}
+.badge-orbit .logo-wrap{border:1px solid color-mix(in srgb,var(--badge-energy) 70%,white);clip-path:polygon(50% 0,88% 12%,100% 50%,88% 88%,50% 100%,12% 88%,0 50%,12% 12%);background:conic-gradient(from 15deg,color-mix(in srgb,var(--badge-energy) 76%,#07111e),#07111e 16%,color-mix(in srgb,var(--badge-energy) 35%,#080b17) 33%,#07111e 52%,color-mix(in srgb,var(--badge-energy) 75%,#07111e) 69%,#07111e 84%,color-mix(in srgb,var(--badge-energy) 76%,#07111e));box-shadow:inset 0 0 20px color-mix(in srgb,var(--badge-energy) 35%,transparent)}
+.badge-orbit .logo-wrap:after{content:"";position:absolute;z-index:-1;inset:-10px;border:1px dashed color-mix(in srgb,var(--badge-energy) 68%,white);border-radius:50%;transform:rotate(-30deg) scaleY(.62);animation:badge-orbit 12s linear infinite;pointer-events:none}
+.badge-shield .logo-wrap{padding:13px 10px 16px;background:linear-gradient(135deg,color-mix(in srgb,var(--badge-energy) 68%,#eaf6ff),color-mix(in srgb,var(--badge-energy) 42%,#102236) 40%,#07111c 78%);clip-path:polygon(50% 0,96% 18%,90% 70%,50% 100%,10% 70%,4% 18%);box-shadow:inset 0 0 0 2px #ffffff22,inset 0 0 28px #0009}
+.badge-shield .logo-wrap:after{content:"";position:absolute;inset:7px;background:linear-gradient(130deg,transparent 0 43%,#ffffff55 44% 46%,transparent 47%);mix-blend-mode:screen;pointer-events:none}
+.badge-crystal .logo-wrap{padding:13px;background:conic-gradient(from 25deg,color-mix(in srgb,var(--badge-energy) 66%,#effcff),color-mix(in srgb,var(--badge-energy) 18%,#10182e),#ffffff60,color-mix(in srgb,var(--badge-energy) 54%,#10182e),color-mix(in srgb,var(--badge-energy) 66%,#effcff));clip-path:polygon(28% 0,72% 0,100% 28%,100% 72%,72% 100%,28% 100%,0 72%,0 28%);box-shadow:0 0 19px color-mix(in srgb,var(--badge-energy) 45%,transparent)}
+.badge-crystal .logo-wrap:after{content:"";position:absolute;inset:4px;clip-path:inherit;background:linear-gradient(45deg,transparent 0 43%,#ffffff5c 45% 47%,transparent 49%);pointer-events:none}
+.badge-medal .logo-wrap{padding:11px;background:linear-gradient(145deg,#080d16,color-mix(in srgb,var(--badge-energy) 42%,#142138) 55%,#080d16);border:2px solid color-mix(in srgb,var(--badge-energy) 68%,#fff);clip-path:polygon(20% 0,80% 0,100% 20%,100% 80%,80% 100%,20% 100%,0 80%,0 20%);box-shadow:inset 0 0 0 4px #07101a,inset 0 0 20px color-mix(in srgb,var(--badge-energy) 28%,transparent)}
+.badge-medal .logo-wrap:after{content:"";position:absolute;inset:-4px;border:1px solid color-mix(in srgb,var(--badge-energy) 65%,transparent);clip-path:inherit;pointer-events:none}
+body.is-preview{background-color:#151724!important;background-image:linear-gradient(45deg,#ffffff0d 25%,transparent 25%,transparent 75%,#ffffff0d 75%),linear-gradient(45deg,#ffffff0d 25%,transparent 25%,transparent 75%,#ffffff0d 75%)!important;background-position:0 0,12px 12px!important;background-size:24px 24px!important}body.is-preview .wrap{left:50%!important;right:auto!important;top:50%!important;bottom:auto!important;transform:translate(-50%,-50%) scale(.95)!important;transform-origin:center!important}
+@media(max-width:600px){body.is-preview .wrap{transform:translate(-50%,-50%) scale(.70)!important}}
+@media(prefers-reduced-motion:reduce){.logo-wrap{animation:none!important}}
+/* Appearance picker */
+.appearance-section{padding:20px 0;border-top:1px solid var(--line)}
+.appearance-section h3{margin:0 0 8px;font-size:16px;color:#f4edff}
+.theme-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:16px 0}
+.theme-choice,.badge-choice{min-width:0;display:flex;flex-direction:column;text-align:left;background:#090b18!important;border:1px solid #ffffff20!important;border-radius:12px;padding:10px!important;color:#eee;overflow:visible}
+.theme-choice:hover,.badge-choice:hover{border-color:#aa93ff!important;transform:translateY(-2px)}
+.theme-choice[aria-pressed=true],.badge-choice[aria-pressed=true]{border-color:#b69fff!important;box-shadow:0 0 0 2px #9578ff50;background:#19152e!important}
+.theme-choice:disabled,.badge-choice:disabled{opacity:.7;cursor:wait}
+.theme-thumbnail{width:100%;height:120px;display:flex;align-items:center;padding:10px;border-radius:8px;background-color:#121322;background-image:linear-gradient(45deg,#ffffff04 25%,transparent 25%,transparent 75%,#ffffff04 75%),linear-gradient(45deg,#ffffff04 25%,transparent 25%,transparent 75%,#ffffff04 75%);background-position:0 0,8px 8px;background-size:16px 16px}
+.style-surface{width:100%;display:flex;align-items:center;gap:6px;padding:10px 6px;color:var(--style-accent)}
+.style-surface img{width:48px;height:56px;object-fit:contain;filter:drop-shadow(0 0 6px #96cbff50)}
+.style-surface>span{min-width:0;flex:1}.style-surface b{font-size:12px;white-space:nowrap;font-weight:800}.style-surface small{font-size:10px;letter-spacing:.3px;color:#d4d5e7}
+.sample-progress{display:block;margin:6px 0;height:4px;background:#ffffff24;border-radius:9px}.sample-progress i{display:block;width:65%;height:100%;background:var(--style-accent);border-radius:9px}
+.theme-neon .style-surface{box-shadow:0 0 12px #45fff133;border-left-width:3px}.theme-royal .style-surface{border-top:3px solid var(--style-accent)}
+.choice-title{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;font-size:14px;font-weight:650;margin:10px 0 4px}.choice-description{font-size:12px;color:#aab1c4;line-height:1.5;font-weight:400}.choice-check{opacity:0;color:#d5c8ff}[aria-pressed=true]>.choice-title .choice-check{opacity:1}
+.badge-gallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin:16px 0}
+.badge-thumbnail{display:grid;place-items:center;width:100%;height:112px;background:radial-gradient(ellipse,#7c5dcc22,transparent 70%)}
+.badge-thumbnail .logo-wrap{position:relative;width:80px;height:80px;display:grid;place-items:center}.badge-thumbnail img{width:100%;height:100%;object-fit:contain}
+.overlay-preview-stage{height:230px;overflow:hidden;border:1px solid var(--line);border-radius:12px;background-color:#131521;background-image:linear-gradient(45deg,#ffffff05 25%,transparent 25%,transparent 75%,#ffffff05 75%),linear-gradient(45deg,#ffffff05 25%,transparent 25%,transparent 75%,#ffffff05 75%);background-position:0 0,12px 12px;background-size:24px 24px}
+.overlay-preview-stage iframe{display:block;width:100%;height:100%;border:0}
+.overlay-preview-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.preview-tile{min-width:0}.preview-tile--rank,.preview-tile--legend{grid-column:1/-1}.preview-tile h4{margin:0 0 6px;font-size:12px;letter-spacing:.05em;color:#f4edff}.preview-tile p{margin:0 0 8px;font-size:11px;color:#aab1c4}.preview-tile .overlay-preview-stage{height:190px}.preview-tile--rank .overlay-preview-stage,.preview-tile--legend .overlay-preview-stage{height:225px}.preview-tile--level{grid-column:1/-1}.preview-tile--level .overlay-preview-stage{height:310px}
+@media(max-width:1000px){.theme-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.badge-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:500px){.theme-gallery{grid-template-columns:1fr}.theme-thumbnail{height:120px}.style-surface{max-width:270px;margin:auto}.badge-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.overlay-preview-stage{height:170px}.overlay-preview-grid{grid-template-columns:1fr}.preview-tile--rank{grid-column:auto}}
+/* Galaxie astrale : spirale vivante, poussière d'étoiles et noyau lumineux. */
+body.theme-bunny,body.badge-bunny{--galaxy-rank:var(--rank,#bd9cff)}
+.theme-bunny{--style-accent:#ffc0e8;--style-bg:#0b0719;--style-border:#efadff99;--style-radius:24px}
+body.theme-bunny .banner,body.theme-bunny .panel,.theme-bunny .style-surface{position:relative;isolation:isolate;overflow:hidden;padding-right:20px;background:radial-gradient(ellipse at 51% 54%,#fff8ff 0 1%,color-mix(in srgb,var(--galaxy-rank) 26%,white) 2%,color-mix(in srgb,var(--galaxy-rank) 70%,#f2a2dc) 5%,var(--galaxy-rank) 12%,color-mix(in srgb,var(--galaxy-rank) 42%,#10091f) 27%,transparent 47%),radial-gradient(ellipse at 50% 50%,color-mix(in srgb,var(--galaxy-rank) 25%,#0c071b) 0 31%,#080513 72%);background-color:#090513;border:1px solid color-mix(in srgb,var(--galaxy-rank) 65%,white);box-shadow:0 0 24px color-mix(in srgb,var(--galaxy-rank) 48%,transparent),inset 0 0 32px color-mix(in srgb,var(--galaxy-rank) 28%,transparent);animation:bunny-halo 5s ease-in-out infinite}
+body.theme-bunny .banner>* ,body.theme-bunny .panel>* ,.theme-bunny .style-surface>*{position:relative;z-index:2}
+body.theme-bunny .banner:after,body.theme-bunny .panel:after,.theme-bunny .style-surface:after{content:"";position:absolute;z-index:0;inset:-58%;border-radius:50%;pointer-events:none;opacity:.88;background:repeating-conic-gradient(from 10deg at 50% 50%,transparent 0 11deg,color-mix(in srgb,var(--galaxy-rank) 45%,transparent) 12deg 17deg,transparent 19deg 41deg,color-mix(in srgb,var(--galaxy-rank) 62%,#f4b8dd) 43deg 48deg,transparent 50deg 76deg),radial-gradient(ellipse at center,transparent 0 10%,color-mix(in srgb,var(--galaxy-rank) 55%,transparent) 13% 15%,transparent 18% 28%,color-mix(in srgb,var(--galaxy-rank) 37%,transparent) 31% 34%,transparent 40%);filter:blur(1px);animation:astral-rotate 30s linear infinite}
+body.theme-bunny .banner:before,body.theme-bunny .panel:before,.theme-bunny .style-surface:before{content:"";position:absolute;z-index:1;inset:0;border-radius:inherit;pointer-events:none;opacity:.9;background-image:radial-gradient(circle at 8% 18%,#fff 0 1px,transparent 2px),radial-gradient(circle at 45% 76%,#ffd0f1 0 1.3px,transparent 2.5px),radial-gradient(circle at 72% 22%,#c6c0ff 0 1px,transparent 2px),radial-gradient(circle at 90% 85%,#fff 0 1px,transparent 2px);background-size:145px 95px;animation:bunny-stars 3.8s ease-in-out infinite alternate}
+.theme-bunny .style-surface>img{width:36px}
+/* Même galaxie animée derrière l'emblème de rang. */
+.badge-bunny .logo-wrap,body.theme-bunny .badge-stage .logo-wrap{isolation:isolate;overflow:visible;border:2px solid color-mix(in srgb,var(--galaxy-rank) 60%,white);border-radius:50%;padding:9px;background:radial-gradient(circle at 50% 50%,#fff4ff 0 3%,color-mix(in srgb,var(--galaxy-rank) 35%,white) 5%,var(--galaxy-rank) 13%,color-mix(in srgb,var(--galaxy-rank) 35%,#120a28) 45%,#0a0618 71%);box-shadow:0 0 24px color-mix(in srgb,var(--galaxy-rank) 60%,transparent),inset 0 0 16px color-mix(in srgb,var(--galaxy-rank) 42%,transparent)}
+.badge-bunny .logo-wrap img,body.theme-bunny .badge-stage .logo-wrap img{position:relative;z-index:2}
+.badge-bunny .logo-wrap:after,body.theme-bunny .badge-stage .logo-wrap:after{content:"";position:absolute;z-index:0;inset:-28px;border-radius:50%;background:repeating-conic-gradient(from 10deg,transparent 0 12deg,color-mix(in srgb,var(--galaxy-rank) 58%,transparent) 14deg 18deg,transparent 21deg 39deg,color-mix(in srgb,var(--galaxy-rank) 55%,white) 42deg 46deg,transparent 50deg 75deg),radial-gradient(circle,transparent 0 23%,color-mix(in srgb,var(--galaxy-rank) 45%,transparent) 26% 29%,transparent 33%);filter:blur(.5px);animation:astral-rotate 18s linear infinite;pointer-events:none}
+.badge-bunny .logo-wrap:before,body.theme-bunny .badge-stage .logo-wrap:before{content:"✦  ·  ✦";position:absolute;z-index:3;inset:-17px;color:#ffe1f5;font-size:16px;letter-spacing:17px;text-shadow:0 0 10px #f6b5ff;white-space:nowrap;animation:bunny-stars 2.8s ease-in-out infinite alternate;pointer-events:none}
+.badge-gallery{grid-template-columns:repeat(6,minmax(0,1fr))}
+@keyframes bunny-halo{0%,100%{box-shadow:0 0 14px #d580ef25,inset 0 0 15px #b180ff15}50%{box-shadow:0 0 30px #ed9cdb78,inset 0 0 30px #b180ff42}}
+@keyframes bunny-stars{from{opacity:.4;filter:brightness(.8)}to{opacity:1;filter:brightness(1.4)}}
+@media(max-width:1000px){.badge-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:500px){.badge-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){body.theme-bunny .banner,body.theme-bunny .panel,.theme-bunny .style-surface,body.theme-bunny .banner:before,body.theme-bunny .panel:before,.theme-bunny .style-surface:before,.badge-bunny .logo-wrap:before,.badge-orbit .logo-wrap:after{animation:none!important}}
+
+@keyframes astral-rotate{to{transform:rotate(360deg)}}
+@keyframes badge-orbit{to{transform:rotate(330deg) scaleY(.62)}}
+@media(prefers-reduced-motion:reduce){body.theme-bunny .banner:after,body.theme-bunny .panel:after,.theme-bunny .style-surface:after,.badge-bunny .logo-wrap:after{animation:none!important}}

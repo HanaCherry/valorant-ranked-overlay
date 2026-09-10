@@ -1,0 +1,24 @@
+[data-rank-fx] { --fx:#9aa2ac; --speed:5s; }
+[data-rank-fx="bronze"] { --fx:#da9561; --speed:4.8s; }
+[data-rank-fx="silver"] { --fx:#d7e9ff; --speed:4.6s; }
+[data-rank-fx="gold"] { --fx:#ffd66a; --speed:4.2s; }
+[data-rank-fx="platinum"] { --fx:#67e9d5; --speed:3.8s; }
+[data-rank-fx="diamond"] { --fx:#c797ff; --speed:3.4s; }
+[data-rank-fx="ascendant"] { --fx:#7bffa8; --speed:3.1s; }
+[data-rank-fx="immortal"] { --fx:#ff607e; --speed:2.8s; }
+[data-rank-fx="radiant"] { --fx:#fff4ae; --speed:2.6s; }
+[data-rank-fx]:not([data-rank-fx="unranked"]) .logo-wrap img,
+img[data-rank-fx]:not([data-rank-fx="unranked"]) { animation:rank-glow var(--speed) ease-in-out infinite; }
+.badge-stage[data-rank-fx]::before { content:""; position:absolute; inset:12%; border-radius:50%; background:radial-gradient(circle,transparent 35%,var(--fx) 68%,transparent 72%); opacity:.15; animation:rank-aura var(--speed) ease-in-out infinite; }
+.badge-stage[data-rank-fx="diamond"]::before { border-radius:18%; transform:rotate(45deg); }
+.badge-stage[data-rank-fx="ascendant"]::before { border-radius:25% 60%; }
+.badge-stage[data-rank-fx="immortal"]::before { background:conic-gradient(from 45deg,transparent,var(--fx),transparent,var(--fx),transparent); animation:rank-orbit 12s linear infinite; }
+.badge-stage[data-rank-fx="radiant"]::before { inset:4%; background:repeating-conic-gradient(var(--fx) 0deg,transparent 12deg 45deg); animation:rank-orbit 22s linear infinite; }
+.badge-stage[data-rank-fx="unranked"]::before { display:none; }
+@keyframes rank-glow { 0%,100% { filter:drop-shadow(0 0 3px var(--fx)); } 50% { filter:drop-shadow(0 0 12px var(--fx)) brightness(1.12); } }
+@keyframes rank-aura { 0%,100% { opacity:.1; } 50% { opacity:.28; } }
+@keyframes rank-orbit { from { transform:rotate(0); } to { transform:rotate(360deg); } }
+.effects-off [data-rank-fx],.effects-off [data-rank-fx] img { animation:none!important; filter:none!important; }
+.effects-off .badge-stage::before { display:none; }
+.effects-off .stars { display:none; }
+@media(prefers-reduced-motion:reduce) { [data-rank-fx],[data-rank-fx] img,.badge-stage[data-rank-fx]::before { animation:none!important; } .stars { display:none; } }

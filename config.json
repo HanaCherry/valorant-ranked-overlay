@@ -1,0 +1,9 @@
+{
+  "riotName": "",
+  "riotTag": "",
+  "region": "eu",
+  "pollSeconds": 480,
+  "port": 8769,
+  "trackerMode": "manual",
+  "overlay": {}
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Valorant Agent Live</title>
+  <link rel="stylesheet" href="overlay-agent.css" />
+</head>
+<body>
+  <main class="agent-card">
+    <div class="portrait-wrap">
+      <img id="portrait" alt="" hidden />
+      <div class="portrait-fallback">VAL</div>
+    </div>
+    <section>
+      <p class="eyebrow" id="role">AGENT SÉLECTIONNÉ</p>
+      <h1 id="agent">EN ATTENTE</h1>
+      <div class="rule"></div>
+      <div class="stats">
+        <div><b id="kd">—</b><span>K/D</span></div>
+        <div><b id="hs">—</b><span>HS%</span></div>
+        <div><b id="acs">—</b><span>ACS</span></div>
+      </div>
+    </section>
+  </main>
+  <script src="overlay-agent.js"></script>
+</body>
+</html>

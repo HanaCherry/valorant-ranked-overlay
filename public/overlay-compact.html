@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valorant Ranked — Compact</title>
+  <link rel="stylesheet" href="overlay.css" />
+  <link rel="stylesheet" href="appearance.css" />
+<link rel="stylesheet" href="rank-effects.css" />
+</head>
+<body class="layout-compact">
+  <div class="wrap bottom-right" id="wrap">
+    <div class="toasts" id="toasts"></div>
+    <div class="banner" id="banner">
+      <div class="badge-stage" id="badgeStage">
+        <canvas class="stars" id="stars" width="160" height="160"></canvas>
+        <div class="logo-wrap" id="logoBanner"></div>
+      </div>
+      <div class="info">
+        <div class="rank-name" id="rankBanner">—</div>
+        <div class="rank-sub" id="subBanner">Competitive</div>
+      </div>
+    </div>
+  </div>
+  <script src="rank-logos.js"></script>
+  <script src="stars.js"></script>
+  <script>if (!new URLSearchParams(location.search).has("layout")) history.replaceState(null,"",location.pathname+location.search+(location.search?"&":"?")+"layout=compact");</script>
+  <script src="overlay.js"></script>
+</body>
+</html>

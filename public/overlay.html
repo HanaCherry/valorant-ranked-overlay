@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valorant Ranked Live</title>
+  <link rel="stylesheet" href="overlay.css" />
+  <link rel="stylesheet" href="appearance.css" />
+<link rel="stylesheet" href="rank-effects.css" />
+</head>
+<body class="layout-banner">
+  <div class="wrap bottom-right" id="wrap">
+    <div class="toasts" id="toasts"></div>
+    <div class="banner" id="banner">
+      <div class="badge-stage" id="badgeStage">
+        <canvas class="stars" id="stars" width="160" height="160"></canvas>
+        <div class="logo-wrap" id="logoBanner"></div>
+      </div>
+      <div class="info">
+        <div class="rank-name" id="rankBanner">—</div>
+        <div class="rank-sub" id="subBanner">Valorant · Competitive</div>
+        <div class="progress-row" id="progBanner">
+          <div class="bar"><i id="barBanner"></i></div>
+          <div class="pct" id="pctBanner">0 RR</div>
+        </div>
+        <div class="live-row" id="liveRow">
+          <div class="live-stat kills"><b id="liveKills">0</b><span class="live-lab">Kills</span></div>
+          <div class="live-stat deaths"><b id="liveDeaths">0</b><span class="live-lab">Deaths</span></div>
+          <div class="live-stat streak"><b id="liveStreak">0</b><span class="live-lab">Streak</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel" id="card">
+      <div class="rank-zone" style="display:flex;gap:10px;align-items:center">
+        <div class="badge-stage small">
+          <canvas class="stars" id="starsFull" width="140" height="140"></canvas>
+          <div class="logo-wrap" id="logo"></div>
+        </div>
+        <div class="rank-info">
+          <div class="rank-sub" id="mode">Valorant · Competitive</div>
+          <div class="rank-name" id="rankLabel">—</div>
+          <div class="progress-row">
+            <div class="bar"><i id="bar"></i></div>
+            <div class="pct" id="progressText">0 RR</div>
+          </div>
+        </div>
+      </div>
+      <div class="stats-zone">
+        <div class="profile-name" id="name">—</div>
+        <div class="live-pill"><i class="dot"></i><span id="source">…</span></div>
+        <div class="stats">
+          <div class="stat"><b id="sKd">0</b><span>K/D</span></div>
+          <div class="stat"><b id="sHs">0%</b><span>HS%</span></div>
+          <div class="stat"><b id="sWinRate">0%</b><span>Win%</span></div>
+          <div class="stat"><b id="sAcs">0</b><span>ACS</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="rank-logos.js"></script>
+  <script src="stars.js"></script>
+  <script src="overlay.js"></script>
+</body>
+</html>
