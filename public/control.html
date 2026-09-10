@@ -77,9 +77,9 @@
         </div>
         <div class="row">
           <label>Source des statistiques
-            <select id="trackerMode"><option value="manual">Mode manuel · recommandé</option><option value="henrik">API privée HenrikDev</option><option value="valocheck">ValoCheck public</option><option value="tracker">Tracker.gg public</option><option value="valking">Valking public</option><option value="blitz">Blitz public</option></select>
+            <select id="trackerMode"><option value="manual">Mode manuel · recommandé</option><option value="trackerOverlay">Overlay URL Tracker.gg · recommandé</option><option value="henrik">API privée HenrikDev</option><option value="valocheck">ValoCheck public</option><option value="tracker">Tracker.gg public</option><option value="valking">Valking public</option><option value="blitz">Blitz public</option></select>
           </label>
-          <label>Clé API privée (facultative) <input id="apiKey" type="password" placeholder="stockée seulement sur ce serveur" /></label>
+          <label>Overlay URL Tracker.gg <input id="trackerOverlayUrl" placeholder="https://tracker.gg/overlays/overlay/..." /></label><label>Clé API privée (facultative) <input id="apiKey" type="password" placeholder="stockée seulement sur ce serveur" /></label>
           <p class="hint">Le mode manuel fonctionne sans compte ni clé. La clé privée n’est jamais envoyée à OBS.</p>
         </div>
         <div class="row"><button id="btnTrack">✦ Connecter mon profil</button><button id="btnPause" class="secondary">Mettre en pause</button></div><p id="syncStatus" class="hint" role="status">Suivi désactivé</p>
@@ -194,7 +194,7 @@
       $("region").value = s.region || "eu";
       const cfg = await (await fetch(API + "/api/config")).json();
       $("trackerMode").value = cfg.trackerMode === "browser" ? (cfg.trackerProvider || "valocheck") : (cfg.trackerMode || "manual");
-      document.querySelectorAll("[data-overlay]").forEach((el) => { el.checked = cfg.overlay?.[el.dataset.overlay] !== false; });
+      document.querySelectorAll("[data-overlay]").forEach((el) => { el.checked = cfg.overlay?.[el.dataset.overlay] !== false; }); $("trackerOverlayUrl").value = cfg.trackerOverlayUrl || "";
       $("levelHaloColor").value = /^#[0-9a-f]{6}$/i.test(cfg.overlay?.levelHaloColor || "") ? cfg.overlay.levelHaloColor : "#b178ff"; $("levelHaloText").value = cfg.overlay?.levelHaloColor || "#b178ff"; $("levelEffect").value = cfg.overlay?.levelEffect || "pulse";
       (s.squad || []).forEach((p, i) => { if ($(`mate${i}`)) $(`mate${i}`).value = p.riotId || ""; });
       const ag = await (await fetch(API + "/api/agents")).json();
@@ -224,7 +224,7 @@
       $("trackStatus").textContent = "Lecture du profil en arrière-plan…";
       try {
         const mode = $("trackerMode").value;
-        const r = await fetch(API + "/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ riotId: $("riotId").value, region: $("region").value, mode }) });
+        const r = await fetch(API + "/api/track", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ riotId: $("riotId").value, region: $("region").value, mode, overlayUrl: $("trackerOverlayUrl").value.trim() }) });
         const j = await r.json(); if (!r.ok) throw new Error(j.error);
         $("trackStatus").textContent = "Profil connecté · mise à jour toutes les 8 minutes";
         $("trackStatus").className = "status ok"; await load();

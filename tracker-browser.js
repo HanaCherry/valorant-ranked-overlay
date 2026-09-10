@@ -4,6 +4,7 @@ const INTERVAL = 8 * 60 * 1000;
 const PARSE_PROFILE_ENDPOINT = "https://api.parse.bot/scraper/6517942a-644e-4cbc-9349-6e6d5ddaa622/get_player_profile";
 const profileUrl = (name, tag, options = {}) => {
   const n = encodeURIComponent(name), t = encodeURIComponent(tag);
+  if (options.provider === "trackerOverlay") return String(options.overlayUrl || "").trim();
   if (options.provider === "tracker") return `https://tracker.gg/valorant/profile/riot/${encodeURIComponent(`${name}#${tag}`)}/overview`;
   if (options.provider === "valking") return `https://valking.gg/en/player/${n}/${t}`;
   if (options.provider === "blitz") return `https://blitz.gg/valorant/profile/${encodeURIComponent(`${name}#${tag}`)}`;
@@ -42,6 +43,7 @@ async function fetchPlayer(region, name, tag, options = {}) {
   try {
     const page = await browser.newPage({ locale: "en-US", viewport: { width: 1440, height: 1000 } });
     const target = profileUrl(name, tag, options);
+    if (options.provider === "trackerOverlay" && !/^https:\/\/tracker\.gg\/overlays\/overlay\/[a-z0-9-]+/i.test(target)) throw new Error("URL Overlay Tracker.gg absente ou invalide.");
     const response = await page.goto(target, { waitUntil: "domcontentloaded", timeout: 45000 });
     if (response && response.status() >= 400) {
       if (response.status() === 401) throw new Error("Blitz demande une autorisation pour ce profil. Choisis ValoCheck ou Valking, puis rends le profil public.");
@@ -100,7 +102,7 @@ function createMonitor({ readConfig, readState, writeState, readCredentials = ()
         platform: cfg.trackerPlatform || "pc",
         playlist: cfg.trackerPlaylist || "competitive",
         season: cfg.trackerSeason || "",
-        provider: cfg.trackerProvider || "valocheck",
+        provider: cfg.trackerProvider || "valocheck", overlayUrl: cfg.trackerOverlayUrl || "",
       });
       const current = readConfig();
       if (current.trackerMode !== "browser" || current.riotName !== cfg.riotName || current.riotTag !== cfg.riotTag) return null;

@@ -351,7 +351,7 @@ async function handleApi(req, res, url) {
     }
     if (monitor.status.busy) return send(res, 409, { error: "Une lecture est déjà en cours." });
     if (body.mode === "browser" || (!body.mode && cfg.trackerMode === "browser")) {
-      saveConfig({ ...cfg, riotName: name, riotTag: tag, region, trackerMode: ["tracker", "valocheck", "valking", "blitz"].includes(body.mode) ? "browser" : body.mode === "parse" ? "parse" : "browser", trackerProvider: ["tracker", "valocheck", "valking", "blitz"].includes(body.mode) ? body.mode : (cfg.trackerProvider || "valocheck"), pollSeconds: 480,
+      saveConfig({ ...cfg, riotName: name, riotTag: tag, region, trackerMode: ["tracker", "trackerOverlay", "valocheck", "valking", "blitz"].includes(body.mode) ? "browser" : body.mode === "parse" ? "parse" : "browser", trackerProvider: ["tracker", "trackerOverlay", "valocheck", "valking", "blitz"].includes(body.mode) ? body.mode : (cfg.trackerProvider || "valocheck"), trackerOverlayUrl: String(body.overlayUrl || cfg.trackerOverlayUrl || "").trim(), pollSeconds: 480,
         trackerPlatform: body.platform || cfg.trackerPlatform || "pc",
         trackerPlaylist: body.playlist || cfg.trackerPlaylist || "competitive",
         trackerSeason: body.season || cfg.trackerSeason || "" });
