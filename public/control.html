@@ -94,6 +94,19 @@
         </div>
       </section>
       <section class="card span-2">
+        <h2>Overlay niveau</h2>
+        <div class="row option-row">
+          <label><input type="checkbox" data-overlay="levelShowBorder" checked /> Bordure de niveau</label>
+          <label><input type="checkbox" data-overlay="levelShowOuter" checked /> Halo violet externe</label>
+          <label><input type="checkbox" data-overlay="levelShowCircle" checked /> Cercle lumineux</label>
+          <label><input type="checkbox" data-overlay="levelShowBackground" checked /> Fond sombre</label>
+          <label><input type="checkbox" data-overlay="levelShowNumber" checked /> Numéro</label>
+          <label><input type="checkbox" data-overlay="levelShowStars" checked /> Étoiles</label>
+          <label><input type="checkbox" data-overlay="levelShowName" checked /> Pseudo</label>
+        </div>
+        <div class="row halo-controls"><label>Couleur <input id="levelHaloColor" type="color" value="#b178ff" /></label><label>RGB / HEX <input id="levelHaloText" value="#b178ff" /></label><label>Animation <select id="levelEffect"><option value="pulse">Pulsation</option><option value="spin">Rotation</option><option value="sparkle">Scintillement</option><option value="static">Fixe</option></select></label></div>
+      </section>
+      <section class="card span-2">
         <h2>Rang manuel & session</h2>
         <div class="row">
           <label>Rang <select id="rank"></select></label>
@@ -128,20 +141,6 @@
           <label><input type="checkbox" data-overlay="showToasts" checked /> Notifications</label>
         </div>
         <p class="hint">Ces réglages s’appliquent à toutes les sources OBS.</p>
-      </section>
-      <section class="card span-2">
-        <h2>Overlay niveau</h2>
-        <div class="row option-row">
-          <label><input type="checkbox" data-overlay="levelShowBorder" checked /> Bordure de niveau</label>
-          <label><input type="checkbox" data-overlay="levelShowOuter" checked /> Halo violet externe</label>
-          <label><input type="checkbox" data-overlay="levelShowCircle" checked /> Cercle lumineux</label>
-          <label><input type="checkbox" data-overlay="levelShowBackground" checked /> Fond sombre</label>
-          <label><input type="checkbox" data-overlay="levelShowNumber" checked /> Numéro</label>
-          <label><input type="checkbox" data-overlay="levelShowStars" checked /> Étoiles</label>
-          <label><input type="checkbox" data-overlay="levelShowName" checked /> Pseudo</label>
-        </div>
-        <div class="row halo-controls"><label>Couleur <input id="levelHaloColor" type="color" value="#b178ff" /></label><label>RGB / HEX <input id="levelHaloText" value="#b178ff" /></label><label>Animation <select id="levelEffect"><option value="pulse">Pulsation</option><option value="spin">Rotation</option><option value="sparkle">Scintillement</option><option value="static">Fixe</option></select></label></div>
-        <div class="level-preview"><iframe src="overlay-level.html?preview=1" title="Aperçu overlay niveau"></iframe></div>
       </section>
       <section class="card span-2">
         <h2>Squad — 5 mates</h2>

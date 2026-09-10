@@ -30,7 +30,6 @@ Les icônes de rang (Iron 1 → Radiant) et les bordures de niveau (1, 20, 40…
 
 ![Overlay ranked Galaxy Bunny](docs/screenshots/ranked-galaxy.png)
 
-![Aperçu niveau Galaxy Bunny](docs/screenshots/level-galaxy-styled.png)
 
 
 ## Lecture navigateur · toutes les 8 minutes
