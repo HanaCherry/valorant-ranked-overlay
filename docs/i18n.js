@@ -1,0 +1,6 @@
+/* global window, module */
+"use strict";
+/** Valorant site i18n bootstrap — language packs in docs/i18n/langs/*.js */
+window.I18N_LANGS=[{"id":"fr","name":"Français"},{"id":"en","name":"English"},{"id":"es","name":"Español"},{"id":"pt","name":"Português"},{"id":"de","name":"Deutsch"},{"id":"it","name":"Italiano"},{"id":"ja","name":"日本語"},{"id":"ko","name":"한국어"},{"id":"zh","name":"简体中文"},{"id":"zh-TW","name":"繁體中文"},{"id":"ar","name":"العربية","dir":"rtl"},{"id":"ru","name":"Русский"},{"id":"hi","name":"हिन्दी"},{"id":"tr","name":"Türkçe"},{"id":"pl","name":"Polski"},{"id":"nl","name":"Nederlands"},{"id":"id","name":"Bahasa Indonesia"},{"id":"vi","name":"Tiếng Việt"},{"id":"th","name":"ไทย"},{"id":"uk","name":"Українська"},{"id":"sv","name":"Svenska"},{"id":"cs","name":"Čeština"},{"id":"ro","name":"Română"},{"id":"el","name":"Ελληνικά"},{"id":"hu","name":"Magyar"},{"id":"fi","name":"Suomi"},{"id":"da","name":"Dansk"},{"id":"no","name":"Norsk"},{"id":"he","name":"עברית","dir":"rtl"},{"id":"ca","name":"Català"},{"id":"ms","name":"Bahasa Melayu"},{"id":"tl","name":"Filipino"}];
+window.I18N=window.I18N||{};
+if(typeof module!=="undefined"&&module.exports){module.exports={I18N:window.I18N,LANGS:window.I18N_LANGS};}
