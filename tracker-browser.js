@@ -2,9 +2,13 @@
 
 const INTERVAL = 8 * 60 * 1000;
 const PARSE_PROFILE_ENDPOINT = "https://api.parse.bot/scraper/6517942a-644e-4cbc-9349-6e6d5ddaa622/get_player_profile";
+function normalizeOverlayUrl(value) {
+  const raw = String(value || "").trim();
+  return raw.replace("/overlays/editor/", "/overlays/overlay/");
+}
 const profileUrl = (name, tag, options = {}) => {
   const n = encodeURIComponent(name), t = encodeURIComponent(tag);
-  if (options.provider === "trackerOverlay") return String(options.overlayUrl || "").trim();
+  if (options.provider === "trackerOverlay") return normalizeOverlayUrl(options.overlayUrl);
   if (options.provider === "tracker") return `https://tracker.gg/valorant/profile/riot/${encodeURIComponent(`${name}#${tag}`)}/overview`;
   if (options.provider === "valking") return `https://valking.gg/en/player/${n}/${t}`;
   if (options.provider === "blitz") return `https://blitz.gg/valorant/profile/${encodeURIComponent(`${name}#${tag}`)}`;
@@ -118,4 +122,4 @@ function createMonitor({ readConfig, readState, writeState, readCredentials = ()
   }
   return { run, arm, status, stop() { stopped = true; cancel(timer); status.nextRun = null; } };
 }
-module.exports = { fetchPlayer, fetchParseProfile, parseProfile, profileUrl, createMonitor, INTERVAL };
+module.exports = { fetchPlayer, fetchParseProfile, parseProfile, profileUrl, normalizeOverlayUrl, createMonitor, INTERVAL };
