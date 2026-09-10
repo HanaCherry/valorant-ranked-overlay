@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Galaxy Bunny · Tracker Bridge",
+  "version": "1.0.0",
+  "description": "Lit les statistiques visibles de Tracker.gg et les envoie au serveur local Galaxy Bunny.",
+  "permissions": [],
+  "host_permissions": ["https://tracker.gg/*", "http://localhost:8769/*", "http://127.0.0.1:8769/*"],
+  "content_scripts": [{
+    "matches": ["https://tracker.gg/overlays/*", "https://tracker.gg/valorant/*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
+}

@@ -306,6 +306,18 @@ async function handleApi(req, res, url) {
     return send(res, 200, { ok: true, state });
   }
 
+  if (url.pathname === "/api/extension" && req.method === "POST") {
+    const body = await readBody(req);
+    if (!body.rank && !body.rr && !body.kd && !body.winRate) return send(res, 400, { error: "Aucune statistique lisible" });
+    const next = { ...loadState(), source: "extension", updatedAt: Date.now() };
+    for (const key of ["rank", "rr", "kd", "hs", "winRate", "acs", "level", "kills", "deaths", "wins", "matches"]) {
+      if (body[key] !== undefined && body[key] !== null && body[key] !== "") next[key] = key === "rank" ? String(body[key]) : Number(body[key]);
+    }
+    if (body.profileUrl) next.profileUrl = String(body.profileUrl);
+    saveState(next);
+    return send(res, 200, { ok: true, state: next });
+  }
+
   if (url.pathname === "/api/session" && req.method === "POST") {
     const body = await readBody(req);
     const s = state.session || { kills: 0, deaths: 0, streak: 0, assists: 0 };
