@@ -50,6 +50,7 @@
     .preview-badge canvas { position:absolute; inset:0; width:100%; height:100%; }
     .preview-badge img { position:absolute; z-index:2; inset:31px; width:88px; height:88px; object-fit:contain; filter:drop-shadow(0 0 8px var(--fx,#c797ff)); }
     .rank-big { font-size: 1.7rem; font-weight: 800; }
+    .tabs { display:flex; gap:8px; margin: 16px 0; } .tab-btn { background:rgba(255,255,255,.08); } .tab-btn.active { background:linear-gradient(135deg,#ff4655,#7a6bff); } .overlay-link-panel { display:none; } .overlay-link-panel.active { display:block; } .grid.tab-hidden { display:none; }
   </style>
   <link rel="stylesheet" href="galaxy.css" />
 <link rel="stylesheet" href="rank-effects.css" />
@@ -58,7 +59,14 @@
   <div class="app">
     <header class="brand"><img src="brand/studio-logo.png" alt="Galaxy Bunny Studio" /><div><p class="eyebrow">GALAXY BUNNY · STREAM STUDIO</p><h1>Valorant <span>Ranked</span></h1></div><span class="local-pill">● Studio local</span></header>
     <p class="sub">Ton espace de contrôle. Ton rang, ta squad, ton univers.</p>
-    <div class="grid">
+    <div class="tabs"><button class="tab-btn active" data-tab="controlTab">Contrôle</button><button class="tab-btn" data-tab="overlayLinkTab">Lien overlay</button></div>
+    <section id="overlayLinkTab" class="card span-2 overlay-link-panel">
+      <h2>Lien overlay Tracker.gg</h2>
+      <p class="hint">Colle ici le lien donné par Tracker.gg. Le lien <b>editor</b> et le lien <b>overlay</b> sont acceptés. Il sera conservé uniquement sur ce serveur local.</p>
+      <div class="row"><label>URL Tracker.gg <input id="trackerOverlayUrlTab" placeholder="https://tracker.gg/overlays/editor/..." /></label><button id="btnApplyOverlay">Utiliser ce lien</button></div>
+      <div id="overlayLinkStatus" class="status"></div>
+    </section>
+    <div id="controlTab" class="grid">
       <section class="card">
         <h2>Profil live</h2>
         <p class="hint">Lecture du profil public sur Tracker, en arrière-plan toutes les 8 minutes. Aucune clé requise pour ce mode.</p>
@@ -168,6 +176,8 @@
   <script>
     const API = location.origin;
     const $ = (id) => document.getElementById(id);
+    document.querySelectorAll("[data-tab]").forEach((btn) => btn.onclick = () => { document.querySelectorAll(".tab-btn").forEach((b) => b.classList.toggle("active", b === btn)); $("overlayLinkTab").classList.toggle("active", btn.dataset.tab === "overlayLinkTab"); $("controlTab").classList.toggle("tab-hidden", btn.dataset.tab !== "controlTab"); });
+    $("btnApplyOverlay").onclick = () => { $("trackerOverlayUrl").value = $("trackerOverlayUrlTab").value.trim(); $("trackerMode").value = "trackerOverlay"; $("overlayLinkStatus").textContent = "Lien enregistré. Clique sur Connecter mon profil dans l’onglet Contrôle."; $("overlayLinkStatus").className = "status ok"; };
     for (let i = 0; i < 5; i++) {
       const lab = document.createElement("label");
       lab.innerHTML = `Mate ${i + 1}${i === 0 ? " (toi)" : ""} <input id="mate${i}" placeholder="Nom#Tag" />`;
@@ -194,7 +204,7 @@
       $("region").value = s.region || "eu";
       const cfg = await (await fetch(API + "/api/config")).json();
       $("trackerMode").value = cfg.trackerMode === "browser" ? (cfg.trackerProvider || "valocheck") : (cfg.trackerMode || "manual");
-      document.querySelectorAll("[data-overlay]").forEach((el) => { el.checked = cfg.overlay?.[el.dataset.overlay] !== false; }); $("trackerOverlayUrl").value = cfg.trackerOverlayUrl || "";
+      document.querySelectorAll("[data-overlay]").forEach((el) => { el.checked = cfg.overlay?.[el.dataset.overlay] !== false; }); $("trackerOverlayUrl").value = cfg.trackerOverlayUrl || ""; $("trackerOverlayUrlTab").value = cfg.trackerOverlayUrl || "";
       $("levelHaloColor").value = /^#[0-9a-f]{6}$/i.test(cfg.overlay?.levelHaloColor || "") ? cfg.overlay.levelHaloColor : "#b178ff"; $("levelHaloText").value = cfg.overlay?.levelHaloColor || "#b178ff"; $("levelEffect").value = cfg.overlay?.levelEffect || "pulse";
       (s.squad || []).forEach((p, i) => { if ($(`mate${i}`)) $(`mate${i}`).value = p.riotId || ""; });
       const ag = await (await fetch(API + "/api/agents")).json();
