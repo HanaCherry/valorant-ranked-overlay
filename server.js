@@ -344,13 +344,14 @@ async function handleApi(req, res, url) {
     name = name || cfg.riotName;
     tag = tag || cfg.riotTag;
     region = region || cfg.region || "eu";
+    if (body.mode === "trackerOverlay" && body.overlayUrl && (!name || !tag)) { name = "Tracker"; tag = "Overlay"; }
     if (!name || !tag) return send(res, 400, { error: "Riot ID requis (Nom#Tag)" });
     if (body.mode === "manual") {
       saveConfig({ ...cfg, riotName: name, riotTag: tag, region, trackerMode: "manual" });
       return send(res, 200, { ok: true, profile: loadState(), manual: true });
     }
     if (monitor.status.busy) return send(res, 409, { error: "Une lecture est déjà en cours." });
-    if (body.mode === "browser" || (!body.mode && cfg.trackerMode === "browser")) {
+    if (["browser", "trackerOverlay", "tracker", "valocheck", "valking", "blitz"].includes(body.mode) || (!body.mode && cfg.trackerMode === "browser")) {
       saveConfig({ ...cfg, riotName: name, riotTag: tag, region, trackerMode: ["tracker", "trackerOverlay", "valocheck", "valking", "blitz"].includes(body.mode) ? "browser" : body.mode === "parse" ? "parse" : "browser", trackerProvider: ["tracker", "trackerOverlay", "valocheck", "valking", "blitz"].includes(body.mode) ? body.mode : (cfg.trackerProvider || "valocheck"), trackerOverlayUrl: String(body.overlayUrl || cfg.trackerOverlayUrl || "").trim(), pollSeconds: 480,
         trackerPlatform: body.platform || cfg.trackerPlatform || "pc",
         trackerPlaylist: body.playlist || cfg.trackerPlaylist || "competitive",
