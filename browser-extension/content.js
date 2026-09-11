@@ -6,10 +6,11 @@
   function read() {
     const text = document.body?.innerText || "";
     const rank = text.match(/(?:RATING|CURRENT RANK|COMPETITIVE RANK)\s+((?:IRON|BRONZE|SILVER|GOLD|PLATINUM|DIAMOND|ASCENDANT|IMMORTAL)\s+[123]|RADIANT|UNRANKED)/i)?.[1];
+    const metric = (pattern) => number(text.match(pattern)?.[1]);
     const winRate = text.match(/WIN\s*%\s*([\d.,]+)/i)?.[1];
     const kd = text.match(/K\/D\s*([\d.,]+)/i)?.[1];
     const hs = text.match(/(?:HEADSHOT|HS)\s*%?\s*([\d.,]+)/i)?.[1];
-    const values = { rank, winRate: number(winRate), kd: number(kd), hs: number(hs), profileUrl: location.href };
+    const values = { rank, rr: metric(/(?:RR|RANK RATING|RATING POINTS)\s*[:：]?\s*([\d.,]+)/i), winRate: number(winRate), kd: number(kd), hs: number(hs), acs: metric(/(?:ACS|AVERAGE COMBAT SCORE)\s*[:：]?\s*([\d.,]+)/i), level: metric(/(?:ACCOUNT LEVEL|LEVEL)\s*[:：]?\s*([\d.,]+)/i), kills: metric(/KILLS\s*[:：]?\s*([\d.,]+)/i), deaths: metric(/DEATHS\s*[:：]?\s*([\d.,]+)/i), wins: metric(/WINS\s*[:：]?\s*([\d.,]+)/i), matches: metric(/(?:MATCHES|MATCHES PLAYED)\s*[:：]?\s*([\d.,]+)/i), profileUrl: location.href };
     return values;
   }
   async function sync() {
