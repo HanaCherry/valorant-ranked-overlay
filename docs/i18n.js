@@ -4,6 +4,11 @@
   var parts = 3;
   var chunks = [];
   var left = parts;
+  if (window.I18N && window.I18N.fr) {
+    window.I18N_LANGS = Object.keys(window.I18N).map(function (id) { return { id: id, name: id.toUpperCase(), dir: "ltr" }; });
+    document.dispatchEvent(new Event("gb-i18n-ready"));
+    return;
+  }
   function fail() {
     console.error("i18n payload load failed");
     window.I18N_LANGS = [];
