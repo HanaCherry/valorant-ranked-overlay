@@ -12,10 +12,15 @@
   }
   function tryDecode() {
     if (typeof DecompressionStream === "undefined") return fail();
-    var B64 = chunks.join("");
-    var bin = atob(B64);
-    var bytes = new Uint8Array(bin.length);
-    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    var decoded = chunks.map(function (chunk) {
+      var bin = atob(chunk);
+      var bytes = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+      return bytes;
+    });
+    var total = decoded.reduce(function (sum, part) { return sum + part.length; }, 0);
+    var bytes = new Uint8Array(total), offset = 0;
+    decoded.forEach(function (part) { bytes.set(part, offset); offset += part.length; });
     var stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream("gzip"));
     new Response(stream).arrayBuffer().then(function (buf) {
       var data = JSON.parse(new TextDecoder().decode(new Uint8Array(buf)));
