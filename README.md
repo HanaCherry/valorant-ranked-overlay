@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a href="https://hanacherry.github.io/valorant-ranked-overlay/"><img src="https://img.shields.io/badge/site-multilingue-8670ef?style=for-the-badge" alt="Site"></a>
+  <a href="index.html"><img src="https://img.shields.io/badge/site-multilingue-8670ef?style=for-the-badge" alt="Site"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/licence-MIT-c9bcff?style=for-the-badge" alt="MIT"></a>
   <a href="package.json"><img src="https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge" alt="Node.js 18+"></a>
 </p>
