@@ -46,4 +46,10 @@ Ustawienia są w data/. Nie publikuj data/ ani danych uwierzytelniających.
 
 ---
 
-VALORANT i assety rang należą do Riot Games. Niezależny, nieoficjalny projekt. Licencja MIT.
+VALORANT i assety rang należą do Riot Games. Niezależny, nieoficjalny projekt. Licencja [GalaxyBunny Free Use](../../LICENSE).
+
+## Usage terms
+
+The application remains free to use, including in monetized streams and videos. Installation, local builds, backups and configuration needed for that use are permitted. Reusing newly covered code in another project, modifying it, redistributing the application or selling copies requires HanaCherry's prior written permission through this repository's issues.
+
+Previously granted rights are preserved: code already published under MIT remains under MIT, and third-party components keep their licenses. New covered original contributions follow the [free application use license](../../LICENSE). GitHub's viewing and forking rights are preserved.

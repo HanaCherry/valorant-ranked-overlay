@@ -46,4 +46,10 @@ Sizes: ranked 700×220 · compact 420×140 · agent 760×210 · squad 440×260 �
 
 ---
 
-VALORANT และสินทรัพย์แรงก์เป็นของ Riot Games โปรเจกต์อิสระ ไม่เป็นทางการ สัญญาอนุญาต MIT
+VALORANT และสินทรัพย์แรงก์เป็นของ Riot Games โปรเจกต์อิสระ ไม่เป็นทางการ สัญญาอนุญาต [GalaxyBunny Free Use](../../LICENSE)
+
+## Usage terms
+
+The application remains free to use, including in monetized streams and videos. Installation, local builds, backups and configuration needed for that use are permitted. Reusing newly covered code in another project, modifying it, redistributing the application or selling copies requires HanaCherry's prior written permission through this repository's issues.
+
+Previously granted rights are preserved: code already published under MIT remains under MIT, and third-party components keep their licenses. New covered original contributions follow the [free application use license](../../LICENSE). GitHub's viewing and forking rights are preserved.

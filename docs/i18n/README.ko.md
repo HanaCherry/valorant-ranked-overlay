@@ -46,4 +46,10 @@ http://127.0.0.1:8769/control.html 열기. 수동 모드는 바로 작동합니�
 
 ---
 
-VALORANT와 랭크 자산은 Riot Games 소유입니다. 비공식 독립 프로젝트. MIT 라이선스.
+VALORANT와 랭크 자산은 Riot Games 소유입니다. 비공식 독립 프로젝트. [GalaxyBunny Free Use](../../LICENSE) 라이선스.
+
+## Usage terms
+
+The application remains free to use, including in monetized streams and videos. Installation, local builds, backups and configuration needed for that use are permitted. Reusing newly covered code in another project, modifying it, redistributing the application or selling copies requires HanaCherry's prior written permission through this repository's issues.
+
+Previously granted rights are preserved: code already published under MIT remains under MIT, and third-party components keep their licenses. New covered original contributions follow the [free application use license](../../LICENSE). GitHub's viewing and forking rights are preserved.

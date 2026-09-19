@@ -4,7 +4,7 @@
   "description": "Overlay Valorant Ranked pour OBS — GalaxyBunny Studio (même studio que Fortnite et Apex)",
   "main": "server.js",
   "private": true,
-  "license": "MIT",
+  "license": "SEE LICENSE IN LICENSE",
   "homepage": "https://hanacherry.github.io/valorant-ranked-overlay/",
   "repository": {
     "type": "git",

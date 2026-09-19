@@ -46,4 +46,10 @@ Le impostazioni restano in data/. Non pubblicare data/ né credenziali.
 
 ---
 
-VALORANT e gli asset di rank appartengono a Riot Games. Progetto indipendente, non ufficiale. Licenza MIT.
+VALORANT e gli asset di rank appartengono a Riot Games. Progetto indipendente, non ufficiale. Licenza [GalaxyBunny Free Use](../../LICENSE).
+
+## Usage terms
+
+The application remains free to use, including in monetized streams and videos. Installation, local builds, backups and configuration needed for that use are permitted. Reusing newly covered code in another project, modifying it, redistributing the application or selling copies requires HanaCherry's prior written permission through this repository's issues.
+
+Previously granted rights are preserved: code already published under MIT remains under MIT, and third-party components keep their licenses. New covered original contributions follow the [free application use license](../../LICENSE). GitHub's viewing and forking rights are preserved.
